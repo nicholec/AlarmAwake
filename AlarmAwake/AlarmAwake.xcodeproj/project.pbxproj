@@ -16,6 +16,7 @@
 		04DE01EB2076EC14001049F4 /* AlarmAwakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01EA2076EC14001049F4 /* AlarmAwakeTests.swift */; };
 		04DE01F62076EC14001049F4 /* AlarmAwakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01F52076EC14001049F4 /* AlarmAwakeUITests.swift */; };
 		04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */; };
+		467021021144B35DA73A39FD /* Pods_AlarmAwake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmAwake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DE01CF2076EC14001049F4 /* AlarmAwake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmAwake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DE01D22076EC14001049F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04DE01D42076EC14001049F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +53,8 @@
 		04DE01F52076EC14001049F4 /* AlarmAwakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAwakeUITests.swift; sourceTree = "<group>"; };
 		04DE01F72076EC14001049F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognizerViewController.swift; sourceTree = "<group>"; };
+		351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.release.xcconfig"; sourceTree = "<group>"; };
+		CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467021021144B35DA73A39FD /* Pods_AlarmAwake.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,8 @@
 				04DE01E92076EC14001049F4 /* AlarmAwakeTests */,
 				04DE01F42076EC14001049F4 /* AlarmAwakeUITests */,
 				04DE01D02076EC14001049F4 /* Products */,
+				CA2DCDB22B413CEE4AB4F5DA /* Pods */,
+				BA5CAAEC35F02298EF307FC1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +138,23 @@
 			path = AlarmAwakeUITests;
 			sourceTree = "<group>";
 		};
+		BA5CAAEC35F02298EF307FC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA2DCDB22B413CEE4AB4F5DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */,
+				351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +162,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DE01FA2076EC14001049F4 /* Build configuration list for PBXNativeTarget "AlarmAwake" */;
 			buildPhases = (
+				AB12E96FB2A50875804CD18A /* [CP] Check Pods Manifest.lock */,
 				04DE01CB2076EC14001049F4 /* Sources */,
 				04DE01CC2076EC14001049F4 /* Frameworks */,
 				04DE01CD2076EC14001049F4 /* Resources */,
+				AB21742F6B7B2D779ADF895B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -259,6 +285,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AB12E96FB2A50875804CD18A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlarmAwake-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB21742F6B7B2D779ADF895B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftTryCatch/SwiftTryCatch.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTryCatch.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		04DE01CB2076EC14001049F4 /* Sources */ = {
@@ -432,11 +497,13 @@
 		};
 		04DE01FB2076EC14001049F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FLYB7FF7L8;
 				INFOPLIST_FILE = AlarmAwake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,11 +514,13 @@
 		};
 		04DE01FC2076EC14001049F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FLYB7FF7L8;
 				INFOPLIST_FILE = AlarmAwake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
