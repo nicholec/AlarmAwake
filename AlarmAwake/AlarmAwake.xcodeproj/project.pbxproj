@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04DE01D32076EC14001049F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01D22076EC14001049F4 /* AppDelegate.swift */; };
+		04DE01D52076EC14001049F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01D42076EC14001049F4 /* ViewController.swift */; };
+		04DE01D82076EC14001049F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DE01D62076EC14001049F4 /* Main.storyboard */; };
+		04DE01DB2076EC14001049F4 /* AlarmAwake.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */; };
+		04DE01DD2076EC14001049F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DE01DC2076EC14001049F4 /* Assets.xcassets */; };
+		04DE01E02076EC14001049F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DE01DE2076EC14001049F4 /* LaunchScreen.storyboard */; };
+		04DE01EB2076EC14001049F4 /* AlarmAwakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01EA2076EC14001049F4 /* AlarmAwakeTests.swift */; };
+		04DE01F62076EC14001049F4 /* AlarmAwakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01F52076EC14001049F4 /* AlarmAwakeUITests.swift */; };
+		04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */; };
+		467021021144B35DA73A39FD /* Pods_AlarmAwake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04DE01E72076EC14001049F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04DE01C72076EC14001049F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04DE01CE2076EC14001049F4;
+			remoteInfo = AlarmAwake;
+		};
+		04DE01F22076EC14001049F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04DE01C72076EC14001049F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04DE01CE2076EC14001049F4;
+			remoteInfo = AlarmAwake;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmAwake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DE01CF2076EC14001049F4 /* AlarmAwake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmAwake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DE01D22076EC14001049F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		04DE01D42076EC14001049F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		04DE01D72076EC14001049F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		04DE01DA2076EC14001049F4 /* AlarmAwake.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmAwake.xcdatamodel; sourceTree = "<group>"; };
+		04DE01DC2076EC14001049F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04DE01DF2076EC14001049F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04DE01E12076EC14001049F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04DE01E62076EC14001049F4 /* AlarmAwakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlarmAwakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DE01EA2076EC14001049F4 /* AlarmAwakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAwakeTests.swift; sourceTree = "<group>"; };
+		04DE01EC2076EC14001049F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04DE01F12076EC14001049F4 /* AlarmAwakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlarmAwakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DE01F52076EC14001049F4 /* AlarmAwakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAwakeUITests.swift; sourceTree = "<group>"; };
+		04DE01F72076EC14001049F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognizerViewController.swift; sourceTree = "<group>"; };
+		351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.release.xcconfig"; sourceTree = "<group>"; };
+		CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04DE01CC2076EC14001049F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				467021021144B35DA73A39FD /* Pods_AlarmAwake.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DE01E32076EC14001049F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DE01EE2076EC14001049F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04DE01C62076EC14001049F4 = {
+			isa = PBXGroup;
+			children = (
+				04DE01D12076EC14001049F4 /* AlarmAwake */,
+				04DE01E92076EC14001049F4 /* AlarmAwakeTests */,
+				04DE01F42076EC14001049F4 /* AlarmAwakeUITests */,
+				04DE01D02076EC14001049F4 /* Products */,
+				CA2DCDB22B413CEE4AB4F5DA /* Pods */,
+				BA5CAAEC35F02298EF307FC1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		04DE01D02076EC14001049F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04DE01CF2076EC14001049F4 /* AlarmAwake.app */,
+				04DE01E62076EC14001049F4 /* AlarmAwakeTests.xctest */,
+				04DE01F12076EC14001049F4 /* AlarmAwakeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04DE01D12076EC14001049F4 /* AlarmAwake */ = {
+			isa = PBXGroup;
+			children = (
+				04DE01D22076EC14001049F4 /* AppDelegate.swift */,
+				04DE01D42076EC14001049F4 /* ViewController.swift */,
+				04DE01D62076EC14001049F4 /* Main.storyboard */,
+				04DE01DC2076EC14001049F4 /* Assets.xcassets */,
+				04DE01DE2076EC14001049F4 /* LaunchScreen.storyboard */,
+				04DE01E12076EC14001049F4 /* Info.plist */,
+				04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */,
+				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
+			);
+			path = AlarmAwake;
+			sourceTree = "<group>";
+		};
+		04DE01E92076EC14001049F4 /* AlarmAwakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				04DE01EA2076EC14001049F4 /* AlarmAwakeTests.swift */,
+				04DE01EC2076EC14001049F4 /* Info.plist */,
+			);
+			path = AlarmAwakeTests;
+			sourceTree = "<group>";
+		};
+		04DE01F42076EC14001049F4 /* AlarmAwakeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				04DE01F52076EC14001049F4 /* AlarmAwakeUITests.swift */,
+				04DE01F72076EC14001049F4 /* Info.plist */,
+			);
+			path = AlarmAwakeUITests;
+			sourceTree = "<group>";
+		};
+		BA5CAAEC35F02298EF307FC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA2DCDB22B413CEE4AB4F5DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */,
+				351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04DE01CE2076EC14001049F4 /* AlarmAwake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04DE01FA2076EC14001049F4 /* Build configuration list for PBXNativeTarget "AlarmAwake" */;
+			buildPhases = (
+				AB12E96FB2A50875804CD18A /* [CP] Check Pods Manifest.lock */,
+				04DE01CB2076EC14001049F4 /* Sources */,
+				04DE01CC2076EC14001049F4 /* Frameworks */,
+				04DE01CD2076EC14001049F4 /* Resources */,
+				AB21742F6B7B2D779ADF895B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AlarmAwake;
+			productName = AlarmAwake;
+			productReference = 04DE01CF2076EC14001049F4 /* AlarmAwake.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04DE01E52076EC14001049F4 /* AlarmAwakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04DE01FD2076EC14001049F4 /* Build configuration list for PBXNativeTarget "AlarmAwakeTests" */;
+			buildPhases = (
+				04DE01E22076EC14001049F4 /* Sources */,
+				04DE01E32076EC14001049F4 /* Frameworks */,
+				04DE01E42076EC14001049F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04DE01E82076EC14001049F4 /* PBXTargetDependency */,
+			);
+			name = AlarmAwakeTests;
+			productName = AlarmAwakeTests;
+			productReference = 04DE01E62076EC14001049F4 /* AlarmAwakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		04DE01F02076EC14001049F4 /* AlarmAwakeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04DE02002076EC14001049F4 /* Build configuration list for PBXNativeTarget "AlarmAwakeUITests" */;
+			buildPhases = (
+				04DE01ED2076EC14001049F4 /* Sources */,
+				04DE01EE2076EC14001049F4 /* Frameworks */,
+				04DE01EF2076EC14001049F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04DE01F32076EC14001049F4 /* PBXTargetDependency */,
+			);
+			name = AlarmAwakeUITests;
+			productName = AlarmAwakeUITests;
+			productReference = 04DE01F12076EC14001049F4 /* AlarmAwakeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04DE01C72076EC14001049F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = mac;
+				TargetAttributes = {
+					04DE01CE2076EC14001049F4 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					04DE01E52076EC14001049F4 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 04DE01CE2076EC14001049F4;
+					};
+					04DE01F02076EC14001049F4 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 04DE01CE2076EC14001049F4;
+					};
+				};
+			};
+			buildConfigurationList = 04DE01CA2076EC14001049F4 /* Build configuration list for PBXProject "AlarmAwake" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04DE01C62076EC14001049F4;
+			productRefGroup = 04DE01D02076EC14001049F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04DE01CE2076EC14001049F4 /* AlarmAwake */,
+				04DE01E52076EC14001049F4 /* AlarmAwakeTests */,
+				04DE01F02076EC14001049F4 /* AlarmAwakeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04DE01CD2076EC14001049F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04DE01E02076EC14001049F4 /* LaunchScreen.storyboard in Resources */,
+				04DE01DD2076EC14001049F4 /* Assets.xcassets in Resources */,
+				04DE01D82076EC14001049F4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DE01E42076EC14001049F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DE01EF2076EC14001049F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AB12E96FB2A50875804CD18A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlarmAwake-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB21742F6B7B2D779ADF895B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftTryCatch/SwiftTryCatch.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTryCatch.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04DE01CB2076EC14001049F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04DE01DB2076EC14001049F4 /* AlarmAwake.xcdatamodeld in Sources */,
+				04DE01D52076EC14001049F4 /* ViewController.swift in Sources */,
+				04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */,
+				04DE01D32076EC14001049F4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DE01E22076EC14001049F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04DE01EB2076EC14001049F4 /* AlarmAwakeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DE01ED2076EC14001049F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04DE01F62076EC14001049F4 /* AlarmAwakeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04DE01E82076EC14001049F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04DE01CE2076EC14001049F4 /* AlarmAwake */;
+			targetProxy = 04DE01E72076EC14001049F4 /* PBXContainerItemProxy */;
+		};
+		04DE01F32076EC14001049F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04DE01CE2076EC14001049F4 /* AlarmAwake */;
+			targetProxy = 04DE01F22076EC14001049F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04DE01D62076EC14001049F4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04DE01D72076EC14001049F4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		04DE01DE2076EC14001049F4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04DE01DF2076EC14001049F4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04DE01F82076EC14001049F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		04DE01F92076EC14001049F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04DE01FB2076EC14001049F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FLYB7FF7L8;
+				INFOPLIST_FILE = AlarmAwake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04DE01FC2076EC14001049F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FLYB7FF7L8;
+				INFOPLIST_FILE = AlarmAwake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04DE01FE2076EC14001049F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FLYB7FF7L8;
+				INFOPLIST_FILE = AlarmAwakeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AlarmAwake.app/AlarmAwake";
+			};
+			name = Debug;
+		};
+		04DE01FF2076EC14001049F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FLYB7FF7L8;
+				INFOPLIST_FILE = AlarmAwakeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AlarmAwake.app/AlarmAwake";
+			};
+			name = Release;
+		};
+		04DE02012076EC14001049F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FLYB7FF7L8;
+				INFOPLIST_FILE = AlarmAwakeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwakeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AlarmAwake;
+			};
+			name = Debug;
+		};
+		04DE02022076EC14001049F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FLYB7FF7L8;
+				INFOPLIST_FILE = AlarmAwakeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nicholec.AlarmAwakeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AlarmAwake;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04DE01CA2076EC14001049F4 /* Build configuration list for PBXProject "AlarmAwake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04DE01F82076EC14001049F4 /* Debug */,
+				04DE01F92076EC14001049F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04DE01FA2076EC14001049F4 /* Build configuration list for PBXNativeTarget "AlarmAwake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04DE01FB2076EC14001049F4 /* Debug */,
+				04DE01FC2076EC14001049F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04DE01FD2076EC14001049F4 /* Build configuration list for PBXNativeTarget "AlarmAwakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04DE01FE2076EC14001049F4 /* Debug */,
+				04DE01FF2076EC14001049F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04DE02002076EC14001049F4 /* Build configuration list for PBXNativeTarget "AlarmAwakeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04DE02012076EC14001049F4 /* Debug */,
+				04DE02022076EC14001049F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04DE01DA2076EC14001049F4 /* AlarmAwake.xcdatamodel */,
+			);
+			currentVersion = 04DE01DA2076EC14001049F4 /* AlarmAwake.xcdatamodel */;
+			path = AlarmAwake.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 04DE01C72076EC14001049F4 /* Project object */;
+}
