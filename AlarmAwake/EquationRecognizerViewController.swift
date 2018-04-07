@@ -20,11 +20,11 @@ class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTas
     var recognitionTask: SFSpeechRecognitionTask?
     var equation: String = ""
     let synth = AVSpeechSynthesizer()
-    let answer = arc4random_uniform(109)
+    let answer = arc4random_uniform(99)
     
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var equationLabel: UILabel!
+    @IBOutlet weak var equationTextView: UITextView!
     
     //IBOutlet Information
     
@@ -32,7 +32,7 @@ class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTas
         super.viewDidLoad()
         requestAuthorization()
         self.numberLabel.text = String(answer)
-        self.equationLabel.text = ""
+        self.equationTextView.text = ""
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         longPressGesture.cancelsTouchesInView = false
@@ -74,7 +74,7 @@ class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTas
     private func startRecording() {
         DispatchQueue.main.async {
             self.equation = ""
-            self.equationLabel.text = "Your equation:"
+            self.equationTextView.text = ""
         }
         
         if let recognitionTask = recognitionTask {
@@ -100,7 +100,7 @@ class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTas
     
     internal func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
         equation = transcription.formattedString.replace(target: " one", withString: "1")
-        self.equationLabel.text = "Your equation: \(equation)"
+        self.equationTextView.text = equation
     }
     
     private func stopRecording() {
@@ -121,10 +121,15 @@ class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTas
             SwiftTryCatch.try({
                 let expr = NSExpression(format: self.equation)
                 if let result = expr.expressionValue(with: [], context: nil) as? Double {
-                    print(result)
-                    let response = "\(self.equation) equals \(Int(result)). \(Double(self.answer) == result ? "That's right!" : "Try again.")"
-                    utterance = AVSpeechUtterance(string: response)
-                    self.synth.speak(utterance)
+                    if (self.answer <= 18 && self.equation.count - String(self.answer).count < 1) ||  self.equation.count - String(self.answer).count < 2 {
+                        utterance = AVSpeechUtterance(string: "Try a longer equation")
+                        self.synth.speak(utterance)
+                    } else {
+                        print(result)
+                        let response = "\(self.equation) equals \(Int(result)). \(Double(self.answer) == result ? "That's right!" : "Try again.")"
+                        utterance = AVSpeechUtterance(string: response)
+                        self.synth.speak(utterance)
+                    }
                 } else {
                     utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation)")
                     self.synth.speak(utterance)

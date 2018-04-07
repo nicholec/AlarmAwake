@@ -17,6 +17,7 @@
 		04DE01F62076EC14001049F4 /* AlarmAwakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01F52076EC14001049F4 /* AlarmAwakeUITests.swift */; };
 		04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */; };
 		467021021144B35DA73A39FD /* Pods_AlarmAwake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */; };
+		702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702ACCED2078865200562422 /* MainAlarmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		04DE01F72076EC14001049F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognizerViewController.swift; sourceTree = "<group>"; };
 		351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.release.xcconfig"; sourceTree = "<group>"; };
+		702ACCED2078865200562422 /* MainAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAlarmViewController.swift; sourceTree = "<group>"; };
 		CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +118,7 @@
 				04DE01E12076EC14001049F4 /* Info.plist */,
 				04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */,
 				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
+				702ACCED2078865200562422 /* MainAlarmViewController.swift */,
 			);
 			path = AlarmAwake;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DE01DB2076EC14001049F4 /* AlarmAwake.xcdatamodeld in Sources */,
+				702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */,
 				04DE01D52076EC14001049F4 /* ViewController.swift in Sources */,
 				04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */,
 				04DE01D32076EC14001049F4 /* AppDelegate.swift in Sources */,
