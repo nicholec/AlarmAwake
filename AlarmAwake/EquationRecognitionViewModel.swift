@@ -33,8 +33,8 @@ extension EquationRecognizerViewModel {
         SFSpeechRecognizer.requestAuthorization { [unowned self] authStatus in
             switch authStatus {
             case .authorized:
+                // save authorization
                 break
-            //                self.startRecording()
             case .denied:
                 print("Denied")
             // show an alert instead
@@ -86,7 +86,6 @@ extension EquationRecognizerViewModel {
 extension EquationRecognizerViewModel {
     internal func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
         equation.value = transcription.formattedString.replace(target: " one", withString: "1")
-//        self.equationTextView.text = equation
     }
     
     public func processEquation(completion: @escaping ((_ correct: Bool) -> Void)) {
