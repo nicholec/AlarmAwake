@@ -7,20 +7,10 @@
 //
 
 import UIKit
-import AVFoundation
-import Speech
-import SwiftTryCatch
 
-class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
+class EquationRecognizerViewController: UIViewController {
     
-    fileprivate var player: AVPlayer?
-    let audioEngine = AVAudioEngine()
-    let speechRecognizer = SFSpeechRecognizer()
-    var request = SFSpeechAudioBufferRecognitionRequest()
-    var recognitionTask: SFSpeechRecognitionTask?
-    var equation: String = ""
-    let synth = AVSpeechSynthesizer()
-    let answer = arc4random_uniform(99)
+    var viewModel: EquationRecognizerViewModel?
     
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var numberLabel: UILabel!
@@ -30,9 +20,13 @@ class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTas
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestAuthorization()
-        self.numberLabel.text = String(answer)
+        viewModel?.requestAuthorization()
+        self.numberLabel.text = String(describing: viewModel?.answer)
         self.equationTextView.text = ""
+        
+        viewModel?.equation.signal.observeValues { equation in
+            self.equationTextView.text = equation
+        }
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         longPressGesture.cancelsTouchesInView = false
@@ -43,105 +37,102 @@ class EquationRecognizerViewController: UIViewController, SFSpeechRecognitionTas
         switch  gestureRecognizer.state {
         case .began:
             print("BEGAN")
-            startRecording()
+            viewModel?.startRecording(completion: {
+                DispatchQueue.main.async {
+                    self.equationTextView.text = ""
+                }
+            })
         case .ended:
             print("exited")
-            stopRecording()
-            processEquation()
+            viewModel?.stopRecording()
+            viewModel?.processEquation(completion: { correct in
+                if correct {
+                    self.dismiss(animated: true)
+                }
+            })
         default:
             break
         }
     }
     
-    private func requestAuthorization() {
-        SFSpeechRecognizer.requestAuthorization { [unowned self] authStatus in
-            switch authStatus {
-            case .authorized:
-                break
-//                self.startRecording()
-            case .denied:
-                print("Denied")
-            // show an alert instead
-            case .restricted:
-                print("Not available")
-            // show an alert instead
-            case .notDetermined:
-                print("lol hm")
-            }
-        }
-    }
     
-    private func startRecording() {
-        DispatchQueue.main.async {
-            self.equation = ""
-            self.equationTextView.text = ""
-        }
-        
-        if let recognitionTask = recognitionTask {
-            recognitionTask.cancel()
-            self.recognitionTask = nil
-        }
-        
-        let node = audioEngine.inputNode
-        let recordingFormat = node.outputFormat(forBus: 0)
-        
-        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [unowned self] buffer, _ in
-            self.request.append(buffer)
-        }
-        
-        audioEngine.prepare()
-        do {
-            try audioEngine.start()
-            recognitionTask = speechRecognizer?.recognitionTask(with: request, delegate: self)
-        } catch (let error) {
-            print("There was a problem starting the recording: \(error.localizedDescription)")
-        }
-    }
     
-    internal func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
-        equation = transcription.formattedString.replace(target: " one", withString: "1")
-        self.equationTextView.text = equation
-    }
+//    private func startRecording() {
+//        DispatchQueue.main.async {
+//            self.equation = ""
+//            self.equationTextView.text = ""
+//        }
+//
+//        if let recognitionTask = recognitionTask {
+//            recognitionTask.cancel()
+//            self.recognitionTask = nil
+//        }
+//
+//        let node = audioEngine.inputNode
+//        let recordingFormat = node.outputFormat(forBus: 0)
+//
+//        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [unowned self] buffer, _ in
+//            self.request.append(buffer)
+//        }
+//
+//        audioEngine.prepare()
+//        do {
+//            try audioEngine.start()
+//            recognitionTask = speechRecognizer?.recognitionTask(with: request, delegate: self)
+//        } catch (let error) {
+//            print("There was a problem starting the recording: \(error.localizedDescription)")
+//        }
+//    }
     
-    private func stopRecording() {
-        audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
-        request.endAudio()
-        recognitionTask?.cancel()
-        request = SFSpeechAudioBufferRecognitionRequest()
-    }
+//    internal func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
+//        equation = transcription.formattedString.replace(target: " one", withString: "1")
+//        self.equationTextView.text = equation
+//    }
     
-    private func processEquation() {
-        var utterance = AVSpeechUtterance(string: "")
-        utterance.rate = 0.5
-        if equation.isEmpty {
-            utterance = AVSpeechUtterance(string: "Make sure you say an equation")
-            self.synth.speak(utterance)
-        } else {
-            SwiftTryCatch.try({
-                let expr = NSExpression(format: self.equation)
-                if let result = expr.expressionValue(with: [], context: nil) as? Double {
-                    if (self.answer <= 18 && self.equation.count - String(self.answer).count < 1) ||  self.equation.count - String(self.answer).count < 2 {
-                        utterance = AVSpeechUtterance(string: "Try a longer equation")
-                        self.synth.speak(utterance)
-                    } else {
-                        print(result)
-                        let response = "\(self.equation) equals \(Int(result)). \(Double(self.answer) == result ? "That's right!" : "Try again.")"
-                        utterance = AVSpeechUtterance(string: response)
-                        self.synth.speak(utterance)
-                    }
-                } else {
-                    utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation)")
-                    self.synth.speak(utterance)
-                }
-            }, catch: { (error) in
-                utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation)")
-                self.synth.speak(utterance)
-            }, finallyBlock: {
-                // close resources
-            })
-        }
-    }
+//    private func stopRecording() {
+//        audioEngine.stop()
+//        audioEngine.inputNode.removeTap(onBus: 0)
+//        request.endAudio()
+//        recognitionTask?.cancel()
+//        request = SFSpeechAudioBufferRecognitionRequest()
+//    }
+    
+//    private func processEquation() {
+//        var utterance = AVSpeechUtterance(string: "")
+//        utterance.rate = 0.5
+//        if equation.isEmpty {
+//            utterance = AVSpeechUtterance(string: "Make sure you say an equation")
+//            self.synth.speak(utterance)
+//        } else {
+//            SwiftTryCatch.try({
+//                let expr = NSExpression(format: self.equation)
+//                if let result = expr.expressionValue(with: [], context: nil) as? Double {
+//                    if (self.answer <= 18 && self.equation.count - String(self.answer).count < 1) ||  self.equation.count - String(self.answer).count < 2 {
+//                        utterance = AVSpeechUtterance(string: "Try a longer equation")
+//                        self.synth.speak(utterance)
+//                    } else {
+//                        print(result)
+//                        let response = "\(self.equation) equals \(Int(result)). \(Double(self.answer) == result ? "That's right!" : "Try again.")"
+//                        utterance = AVSpeechUtterance(string: response)
+//                        self.synth.speak(utterance)
+//                        if Double(self.answer) == result {
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+//                                self.dismiss(animated: true)
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation)")
+//                    self.synth.speak(utterance)
+//                }
+//            }, catch: { (error) in
+//                utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation)")
+//                self.synth.speak(utterance)
+//            }, finallyBlock: {
+//                // close resources
+//            })
+//        }
+//    }
 }
 
 extension String {
