@@ -22,7 +22,7 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     let synth = AVSpeechSynthesizer()
     let answer = arc4random_uniform(99)
     
-    init(player: AVAudioPlayer) {
+    init(player: AVAudioPlayer?) {
         self.player = player
     }
 }
@@ -57,9 +57,9 @@ extension EquationRecognizerViewModel {
         }
         
         let node = audioEngine.inputNode
-        let recordingFormat = node.outputFormat(forBus: 0)
+        let recordingFormat = node.outputFormat(forBus: 1)
         
-        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [unowned self] buffer, _ in
+        node.installTap(onBus: 1, bufferSize: 1024, format: recordingFormat) { [unowned self] buffer, _ in
             self.request.append(buffer)
         }
         
@@ -75,7 +75,7 @@ extension EquationRecognizerViewModel {
     
     public func stopRecording() {
         audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
+        audioEngine.inputNode.removeTap(onBus: 1)
         request.endAudio()
         recognitionTask?.cancel()
         request = SFSpeechAudioBufferRecognitionRequest()
@@ -105,7 +105,7 @@ extension EquationRecognizerViewModel {
                         completion(false)
                     } else {
                         print(result)
-                        let response = "\(self.equation) equals \(Int(result)). \(Double(self.answer) == result ? "That's right!" : "Try again.")"
+                        let response = "\(self.equation.value) equals \(Int(result)). \(Double(self.answer) == result ? "That's right!" : "Try again.")"
                         utterance = AVSpeechUtterance(string: response)
                         self.synth.speak(utterance)
                         completion(Double(self.answer) == result)
@@ -116,12 +116,12 @@ extension EquationRecognizerViewModel {
 //                        }
                     }
                 } else {
-                    utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation)")
+                    utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation.value)")
                     self.synth.speak(utterance)
                     completion(false)
                 }
             }, catch: { (error) in
-                utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation)")
+                utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation.value)")
                 self.synth.speak(utterance)
                 completion(false)
             }, finallyBlock: {

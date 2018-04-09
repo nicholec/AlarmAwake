@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class EquationRecognizerViewController: UIViewController {
     
-    var viewModel: EquationRecognizerViewModel?
+    var viewModel: EquationRecognizerViewModel!
     
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var numberLabel: UILabel!
@@ -20,11 +21,11 @@ class EquationRecognizerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.requestAuthorization()
-        self.numberLabel.text = String(describing: viewModel?.answer)
+        viewModel.requestAuthorization()
+        self.numberLabel.text = String(describing: viewModel.answer)
         self.equationTextView.text = ""
         
-        viewModel?.equation.signal.observeValues { equation in
+        viewModel.equation.signal.observeValues { equation in
             self.equationTextView.text = equation
         }
         
@@ -44,10 +45,21 @@ class EquationRecognizerViewController: UIViewController {
             })
         case .ended:
             print("exited")
-            viewModel?.stopRecording()
-            viewModel?.processEquation(completion: { correct in
+            viewModel.stopRecording()
+            viewModel.processEquation(completion: { correct in
                 if correct {
-                    self.dismiss(animated: true)
+                    self.viewModel.player?.stop()
+                    self.dismiss(animated: true, completion: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                            let session = AVAudioSession.sharedInstance()
+                            do {
+                                // Configure the audio session for speech + tone
+                                try session.setCategory(AVAudioSessionCategoryPlayback)
+                            } catch let error as NSError {
+                                print("Failed to set the audio session category and mode: \(error.localizedDescription)")
+                            }
+                        }
+                    })
                 }
             })
         default:

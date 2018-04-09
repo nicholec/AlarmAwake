@@ -55,6 +55,13 @@ class MainAlarmViewController: UIViewController {
         }
         
         do {
+            let session = AVAudioSession.sharedInstance()
+            do {
+                // Configure the audio session for speech +
+                try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            } catch let error as NSError {
+                print("Failed to set the audio session category and mode: \(error.localizedDescription)")
+            }
             player = try AVAudioPlayer(contentsOf: url)
             guard let player = player else { return }
             player.numberOfLoops = -1
