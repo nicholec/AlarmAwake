@@ -109,11 +109,6 @@ extension EquationRecognizerViewModel {
                         utterance = AVSpeechUtterance(string: response)
                         self.synth.speak(utterance)
                         completion(Double(self.answer) == result)
-//                        if Double(self.answer) == result {
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//                                self.dismiss(animated: true)
-//                            }
-//                        }
                     }
                 } else {
                     utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.equation.value)")
