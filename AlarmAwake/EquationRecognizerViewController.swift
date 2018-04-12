@@ -22,11 +22,14 @@ class EquationRecognizerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.requestAuthorization()
-        self.numberLabel.text = String(describing: viewModel.answer)
+        self.numberLabel.text = String(describing: viewModel.answer.value)
         self.equationTextView.text = ""
         
         viewModel.equation.signal.observeValues { equation in
             self.equationTextView.text = equation
+        }
+        viewModel.answer.signal.observeValues { answer in
+            self.numberLabel.text = String(answer)
         }
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))

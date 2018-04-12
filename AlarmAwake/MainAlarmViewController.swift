@@ -18,15 +18,17 @@ class MainAlarmViewController: UIViewController {
     var timerIsRunning = false
     var player: AVAudioPlayer?
     @IBOutlet weak var difficultySegControl: UISegmentedControl!
+    @IBOutlet weak var numberTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addDoneButtonOnKeyboard()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startEquationRecognizer" {
             if let viewController = segue.destination as? EquationRecognizerViewController {
-                let viewModel = EquationRecognizerViewModel(player: player, difficultySetting: difficultySegControl.selectedSegmentIndex)
+                let viewModel = EquationRecognizerViewModel(player: player, difficultySetting: difficultySegControl.selectedSegmentIndex, numCorrectNeeded: Int(self.numberTextField.text ?? "1")!)
                 viewController.viewModel = viewModel
             }
         }
@@ -74,5 +76,27 @@ class MainAlarmViewController: UIViewController {
         } catch (let error) {
             print(error.localizedDescription)
         }
+    }
+}
+
+extension MainAlarmViewController {
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.numberTextField.inputAccessoryView = doneToolbar
+    }
+    
+    @objc func doneButtonAction() {
+        self.numberTextField.resignFirstResponder()
     }
 }

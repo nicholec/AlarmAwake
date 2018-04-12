@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vmL-4d-dUV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vmL-4d-dUV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Equation Recognizer View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -103,14 +98,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fd5-E5-f1I">
-                                <rect key="frame" x="153.5" y="287" width="67" height="30"/>
+                                <rect key="frame" x="153.5" y="187" width="67" height="30"/>
                                 <state key="normal" title="Set Alarm"/>
                                 <connections>
                                     <action selector="startTimer" destination="vmL-4d-dUV" eventType="touchUpInside" id="pCJ-91-gXF"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3ZP-Uj-IfT">
-                                <rect key="frame" x="92" y="350" width="191" height="29"/>
+                                <rect key="frame" x="92" y="250" width="191" height="29"/>
                                 <segments>
                                     <segment title="Easy"/>
                                     <segment title="Medium"/>
@@ -118,7 +113,19 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equation Difficulty:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNh-3h-dkc">
-                                <rect key="frame" x="129.5" y="325.5" width="117.5" height="16.5"/>
+                                <rect key="frame" x="129.5" y="225.5" width="117.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZQ-dO-Y7I">
+                                <rect key="frame" x="173.5" y="320" width="27.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Equations to Solve for Dismissal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJo-0z-24n">
+                                <rect key="frame" x="49.5" y="295" width="276" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -127,16 +134,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3ZP-Uj-IfT" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="7FQ-wc-Qqr"/>
+                            <constraint firstItem="vZQ-dO-Y7I" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="7hK-Pv-lHm"/>
+                            <constraint firstItem="VJo-0z-24n" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="Bcq-RN-Q8o"/>
                             <constraint firstItem="tNh-3h-dkc" firstAttribute="top" secondItem="fd5-E5-f1I" secondAttribute="bottom" constant="8.5" id="KcV-jh-2K4"/>
+                            <constraint firstItem="vZQ-dO-Y7I" firstAttribute="top" secondItem="VJo-0z-24n" secondAttribute="bottom" constant="8" id="QGW-oT-mHf"/>
                             <constraint firstItem="fd5-E5-f1I" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="URZ-en-SYY"/>
                             <constraint firstItem="tNh-3h-dkc" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="Ypm-8S-F2S"/>
-                            <constraint firstItem="tNh-3h-dkc" firstAttribute="centerY" secondItem="KGL-Cr-pVq" secondAttribute="centerY" id="dDA-Df-UyM"/>
+                            <constraint firstItem="tNh-3h-dkc" firstAttribute="centerY" secondItem="KGL-Cr-pVq" secondAttribute="centerY" constant="-100" id="dDA-Df-UyM"/>
+                            <constraint firstItem="VJo-0z-24n" firstAttribute="top" secondItem="3ZP-Uj-IfT" secondAttribute="bottom" constant="17" id="hO2-XK-yAT"/>
                             <constraint firstItem="3ZP-Uj-IfT" firstAttribute="top" secondItem="tNh-3h-dkc" secondAttribute="bottom" constant="8" id="mUo-M3-VqL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3H2-W6-2xA"/>
                     </view>
                     <connections>
                         <outlet property="difficultySegControl" destination="3ZP-Uj-IfT" id="hAS-AV-Pc1"/>
+                        <outlet property="numberTextField" destination="vZQ-dO-Y7I" id="lyP-Kk-Vvd"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="startEquationRecognizer" id="qQh-6f-uNy"/>
                     </connections>
                 </viewController>
