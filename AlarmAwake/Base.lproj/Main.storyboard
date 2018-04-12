@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vmL-4d-dUV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXW-ph-PjV">
-                                <rect key="frame" x="150.5" y="150" width="74.5" height="100"/>
+                                <rect key="frame" x="151" y="150" width="75" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="mcL-6k-3f5"/>
                                 </constraints>
@@ -46,41 +46,84 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give an equation that evaluates to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9K-CV-EgG">
-                                <rect key="frame" x="57.5" y="110" width="260" height="20"/>
+                                <rect key="frame" x="58" y="110" width="260" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your equation:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-5b-fsI">
-                                <rect key="frame" x="133" y="336" width="110" height="20"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <rect key="frame" x="130" y="336" width="116.5" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="{Equation}" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVt-N2-0o3">
+                                <rect key="frame" x="60" y="359" width="255" height="133"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="255" id="3lF-gL-qx8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GLs-Be-Hrg" secondAttribute="bottom" constant="49" id="3Lu-Tm-AgH"/>
                             <constraint firstItem="jXW-ph-PjV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="46U-bX-Yaq"/>
                             <constraint firstItem="C9K-CV-EgG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AP8-GI-QF1"/>
+                            <constraint firstItem="CVt-N2-0o3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NqP-G2-zdt"/>
+                            <constraint firstItem="CVt-N2-0o3" firstAttribute="top" secondItem="RK4-5b-fsI" secondAttribute="bottom" constant="2" id="aJK-0Y-rbk"/>
                             <constraint firstItem="GLs-Be-Hrg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bs7-9y-9JD"/>
                             <constraint firstItem="C9K-CV-EgG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="eXC-kQ-gsN"/>
                             <constraint firstItem="jXW-ph-PjV" firstAttribute="centerX" secondItem="C9K-CV-EgG" secondAttribute="centerX" id="gM6-s1-W5M"/>
                             <constraint firstItem="RK4-5b-fsI" firstAttribute="top" secondItem="jXW-ph-PjV" secondAttribute="bottom" constant="86" id="kF8-59-XZU"/>
                             <constraint firstItem="jXW-ph-PjV" firstAttribute="top" secondItem="C9K-CV-EgG" secondAttribute="bottom" constant="20" id="rlW-b8-hAL"/>
+                            <constraint firstItem="GLs-Be-Hrg" firstAttribute="top" secondItem="CVt-N2-0o3" secondAttribute="bottom" constant="76" id="ysp-51-D2f"/>
                             <constraint firstItem="jXW-ph-PjV" firstAttribute="centerX" secondItem="RK4-5b-fsI" secondAttribute="centerX" id="z0l-Ql-esK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="equationLabel" destination="RK4-5b-fsI" id="mxm-Fo-Qji"/>
+                        <outlet property="equationTextView" destination="CVt-N2-0o3" id="IrL-mg-Pwx"/>
                         <outlet property="numberLabel" destination="jXW-ph-PjV" id="eaO-1B-Xv9"/>
                         <outlet property="recordingButton" destination="GLs-Be-Hrg" id="MeS-cf-l3m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="826" y="137"/>
+        </scene>
+        <!--Main Alarm View Controller-->
+        <scene sceneID="E9E-cj-hS3">
+            <objects>
+                <viewController storyboardIdentifier="MainAlarmVC" id="vmL-4d-dUV" customClass="MainAlarmViewController" customModule="AlarmAwake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KGL-Cr-pVq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fd5-E5-f1I">
+                                <rect key="frame" x="153.5" y="318.5" width="67" height="30"/>
+                                <state key="normal" title="Set Alarm"/>
+                                <connections>
+                                    <action selector="startTimer" destination="vmL-4d-dUV" eventType="touchUpInside" id="pCJ-91-gXF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fd5-E5-f1I" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="URZ-en-SYY"/>
+                            <constraint firstItem="fd5-E5-f1I" firstAttribute="centerY" secondItem="KGL-Cr-pVq" secondAttribute="centerY" id="sHi-ls-kf7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3H2-W6-2xA"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="startEquationRecognizer" id="qQh-6f-uNy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KSY-xq-hYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6" y="138"/>
         </scene>
     </scenes>
     <resources>

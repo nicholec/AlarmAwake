@@ -17,6 +17,9 @@
 		04DE01F62076EC14001049F4 /* AlarmAwakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01F52076EC14001049F4 /* AlarmAwakeUITests.swift */; };
 		04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */; };
 		467021021144B35DA73A39FD /* Pods_AlarmAwake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */; };
+		702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702ACCED2078865200562422 /* MainAlarmViewController.swift */; };
+		702ACCF0207B1F1100562422 /* Citrine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 702ACCEF207B1F1100562422 /* Citrine.mp3 */; };
+		702ACCF2207B259400562422 /* EquationRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		04DE01F72076EC14001049F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognizerViewController.swift; sourceTree = "<group>"; };
 		351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.release.xcconfig"; sourceTree = "<group>"; };
+		702ACCED2078865200562422 /* MainAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAlarmViewController.swift; sourceTree = "<group>"; };
+		702ACCEF207B1F1100562422 /* Citrine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Citrine.mp3; sourceTree = "<group>"; };
+		702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognitionViewModel.swift; sourceTree = "<group>"; };
 		CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,9 +119,12 @@
 				04DE01D62076EC14001049F4 /* Main.storyboard */,
 				04DE01DC2076EC14001049F4 /* Assets.xcassets */,
 				04DE01DE2076EC14001049F4 /* LaunchScreen.storyboard */,
+				702ACCEF207B1F1100562422 /* Citrine.mp3 */,
 				04DE01E12076EC14001049F4 /* Info.plist */,
 				04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */,
 				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
+				702ACCED2078865200562422 /* MainAlarmViewController.swift */,
+				702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */,
 			);
 			path = AlarmAwake;
 			sourceTree = "<group>";
@@ -267,6 +276,7 @@
 				04DE01E02076EC14001049F4 /* LaunchScreen.storyboard in Resources */,
 				04DE01DD2076EC14001049F4 /* Assets.xcassets in Resources */,
 				04DE01D82076EC14001049F4 /* Main.storyboard in Resources */,
+				702ACCF0207B1F1100562422 /* Citrine.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,10 +322,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftTryCatch/SwiftTryCatch.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTryCatch.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,8 +345,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DE01DB2076EC14001049F4 /* AlarmAwake.xcdatamodeld in Sources */,
+				702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */,
 				04DE01D52076EC14001049F4 /* ViewController.swift in Sources */,
 				04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */,
+				702ACCF2207B259400562422 /* EquationRecognitionViewModel.swift in Sources */,
 				04DE01D32076EC14001049F4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
