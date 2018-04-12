@@ -32,6 +32,8 @@ class EquationRecognizerViewController: UIViewController {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         longPressGesture.cancelsTouchesInView = false
         recordingButton.addGestureRecognizer(longPressGesture)
+        
+        viewModel.askForEquation()
     }
     
     @IBAction func longPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -54,7 +56,7 @@ class EquationRecognizerViewController: UIViewController {
                             let session = AVAudioSession.sharedInstance()
                             do {
                                 // Configure the audio session for speech + tone
-                                try session.setCategory(AVAudioSessionCategoryPlayback)
+                                try session.setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
                             } catch let error as NSError {
                                 print("Failed to set the audio session category and mode: \(error.localizedDescription)")
                             }

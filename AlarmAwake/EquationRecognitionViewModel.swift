@@ -88,6 +88,12 @@ extension EquationRecognizerViewModel {
         recognitionTask?.cancel()
         request = SFSpeechAudioBufferRecognitionRequest()
     }
+    
+    public func askForEquation() {
+        let utterance = AVSpeechUtterance(string: "Give me an equation that evaluates to \(String(answer))")
+        utterance.rate = 0.5
+        self.synth.speak(utterance)
+    }
 }
 
 // Equation Processing
