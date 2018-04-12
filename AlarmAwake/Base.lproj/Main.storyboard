@@ -103,27 +103,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fd5-E5-f1I">
-                                <rect key="frame" x="153.5" y="318.5" width="67" height="30"/>
+                                <rect key="frame" x="153.5" y="287" width="67" height="30"/>
                                 <state key="normal" title="Set Alarm"/>
                                 <connections>
                                     <action selector="startTimer" destination="vmL-4d-dUV" eventType="touchUpInside" id="pCJ-91-gXF"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3ZP-Uj-IfT">
+                                <rect key="frame" x="92" y="350" width="191" height="29"/>
+                                <segments>
+                                    <segment title="Easy"/>
+                                    <segment title="Medium"/>
+                                    <segment title="Hard"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equation Difficulty:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNh-3h-dkc">
+                                <rect key="frame" x="129.5" y="325.5" width="117.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="3ZP-Uj-IfT" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="7FQ-wc-Qqr"/>
+                            <constraint firstItem="tNh-3h-dkc" firstAttribute="top" secondItem="fd5-E5-f1I" secondAttribute="bottom" constant="8.5" id="KcV-jh-2K4"/>
                             <constraint firstItem="fd5-E5-f1I" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="URZ-en-SYY"/>
-                            <constraint firstItem="fd5-E5-f1I" firstAttribute="centerY" secondItem="KGL-Cr-pVq" secondAttribute="centerY" id="sHi-ls-kf7"/>
+                            <constraint firstItem="tNh-3h-dkc" firstAttribute="centerX" secondItem="KGL-Cr-pVq" secondAttribute="centerX" id="Ypm-8S-F2S"/>
+                            <constraint firstItem="tNh-3h-dkc" firstAttribute="centerY" secondItem="KGL-Cr-pVq" secondAttribute="centerY" id="dDA-Df-UyM"/>
+                            <constraint firstItem="3ZP-Uj-IfT" firstAttribute="top" secondItem="tNh-3h-dkc" secondAttribute="bottom" constant="8" id="mUo-M3-VqL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3H2-W6-2xA"/>
                     </view>
                     <connections>
+                        <outlet property="difficultySegControl" destination="3ZP-Uj-IfT" id="hAS-AV-Pc1"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="startEquationRecognizer" id="qQh-6f-uNy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSY-xq-hYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6" y="138"/>
+            <point key="canvasLocation" x="5.5999999999999996" y="137.18140929535232"/>
         </scene>
     </scenes>
     <resources>

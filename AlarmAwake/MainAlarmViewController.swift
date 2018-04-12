@@ -17,6 +17,7 @@ class MainAlarmViewController: UIViewController {
     var time = 5
     var timerIsRunning = false
     var player: AVAudioPlayer?
+    @IBOutlet weak var difficultySegControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class MainAlarmViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startEquationRecognizer" {
             if let viewController = segue.destination as? EquationRecognizerViewController {
-                let viewModel = EquationRecognizerViewModel(player: player)
+                let viewModel = EquationRecognizerViewModel(player: player, difficultySetting: difficultySegControl.selectedSegmentIndex)
                 viewController.viewModel = viewModel
             }
         }
@@ -59,13 +60,14 @@ class MainAlarmViewController: UIViewController {
             let session = AVAudioSession.sharedInstance()
             do {
                 // Configure the audio session for speech +
-                try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
             } catch let error as NSError {
                 print("Failed to set the audio session category and mode: \(error.localizedDescription)")
             }
             player = try AVAudioPlayer(contentsOf: url)
             guard let player = player else { return }
             player.numberOfLoops = -1
+            player.volume = 1.0
             player.prepareToPlay()
             player.play()
             self.performSegue(withIdentifier: "startEquationRecognizer", sender: nil)
