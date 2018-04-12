@@ -17,6 +17,7 @@ class MainAlarmViewController: UIViewController {
     var time = 5
     var timerIsRunning = false
     var player: AVAudioPlayer?
+    @IBOutlet weak var difficultySegControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class MainAlarmViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startEquationRecognizer" {
             if let viewController = segue.destination as? EquationRecognizerViewController {
-                let viewModel = EquationRecognizerViewModel(player: player)
+                let viewModel = EquationRecognizerViewModel(player: player, difficultySetting: difficultySegControl.selectedSegmentIndex)
                 viewController.viewModel = viewModel
             }
         }

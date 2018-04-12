@@ -12,6 +12,12 @@ import Speech
 import SwiftTryCatch
 import ReactiveSwift
 
+enum EquationDifficulty: Int {
+    case Easy = 0
+    case Medium = 1
+    case Hard = 2
+}
+
 class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     var player: AVAudioPlayer?
     let audioEngine = AVAudioEngine()
@@ -24,9 +30,11 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     var numericalEquation: String = ""
     let synth = AVSpeechSynthesizer()
     let answer = arc4random_uniform(99)
+    let equationDifficulty: EquationDifficulty
     
-    init(player: AVAudioPlayer?) {
+    init(player: AVAudioPlayer?, difficultySetting: Int) {
         self.player = player
+        self.equationDifficulty = EquationDifficulty(rawValue: difficultySetting)!
     }
 }
 
@@ -85,16 +93,28 @@ extension EquationRecognizerViewModel {
 // Equation Processing
 extension EquationRecognizerViewModel {
     internal func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
-        equation.value = transcription.formattedString.replace(target: " one", withString: "1")
-        processForFormattedEquation()
-        
+        equation.value = transcription.formattedString
+//        processForFormattedEquation()
     }
     
     private func processForFormattedEquation() {
+        self.equation.value = self.equation.value.replace(target: " one", withString: "1").replace(target: " minus", withString: "-")
         self.processedEquation = equation.value.replace(target: "×", withString: "*")
         self.spokenEquation = self.processedEquation.replace(target: "-", withString: " minus ")
+        self.spokenEquation = self.processedEquation.replace(target: "*", withString: " times ")
         self.processedEquation = self.processedEquation.replace(target: "÷", withString: "/")
         print(self.processedEquation)
+    }
+    
+    private func minLengthForDifficultySetting() -> Int {
+        switch equationDifficulty {
+        case .Easy:
+            return 1
+        case .Medium:
+            return 3
+        case .Hard:
+            return 5
+        }
     }
     
     public func processEquation(completion: @escaping ((_ correct: Bool) -> Void)) {
@@ -108,7 +128,7 @@ extension EquationRecognizerViewModel {
             SwiftTryCatch.try({
                 let expr = NSExpression(format: self.processedEquation)
                 if let result = expr.expressionValue(with: [], context: nil) as? Double {
-                    if (self.answer <= 18 && self.equation.value.count - String(self.answer).count < 1) || self.answer > 18 &&  self.equation.value.count - String(self.answer).count < 2 {
+                    if (self.answer <= 18 && self.equation.value.count - String(self.answer).count < self.minLengthForDifficultySetting()) || self.answer > 18 &&  self.equation.value.count - String(self.answer).count < self.minLengthForDifficultySetting() + 1 {
                         utterance = AVSpeechUtterance(string: "Try a longer equation")
                         self.synth.speak(utterance)
                         completion(false)
