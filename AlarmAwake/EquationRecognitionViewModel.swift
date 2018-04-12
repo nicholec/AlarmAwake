@@ -32,7 +32,7 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     var answer: MutableProperty<UInt32> = MutableProperty(arc4random_uniform(99))
     let equationDifficulty: EquationDifficulty
     let correctNeeded: Int
-    var numTimesCorrect: Int = 0
+    var numTimesCorrect: MutableProperty<Int> = MutableProperty(0)
     var numbersSolvedFor: Set<UInt32> = Set()
     
     init(player: AVAudioPlayer?, difficultySetting: Int, numCorrectNeeded: Int) {
@@ -161,9 +161,11 @@ extension EquationRecognizerViewModel {
                         utterance = AVSpeechUtterance(string: response)
                         self.synth.speak(utterance)
                         if Double(self.answer.value) == result {
-                            self.numTimesCorrect += 1
-                            if self.numTimesCorrect == self.correctNeeded {
-                                completion(true)
+                            self.numTimesCorrect.value += 1
+                            if self.numTimesCorrect.value == self.correctNeeded {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                    completion(true)
+                                }
                             } else {
                                 self.generateNextNumber()
                                 completion(false)
