@@ -50,7 +50,7 @@ class EquationRecognizerViewController: UIViewController {
                 if correct {
                     self.viewModel.player?.stop()
                     self.dismiss(animated: true, completion: {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
                             let session = AVAudioSession.sharedInstance()
                             do {
                                 // Configure the audio session for speech + tone

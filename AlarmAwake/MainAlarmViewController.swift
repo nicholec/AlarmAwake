@@ -44,6 +44,7 @@ class MainAlarmViewController: UIViewController {
             timer.invalidate()
             time = 5
             // start ringer
+            timerIsRunning = false
             playTone()
         }
     }
