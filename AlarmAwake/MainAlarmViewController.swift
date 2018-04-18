@@ -19,6 +19,7 @@ class MainAlarmViewController: UIViewController {
     var player: AVAudioPlayer?
     @IBOutlet weak var difficultySegControl: UISegmentedControl!
     @IBOutlet weak var numberTextField: UITextField!
+    @IBOutlet weak var startAlarmButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class MainAlarmViewController: UIViewController {
     
     @IBAction func startTimer() {
         if !timerIsRunning {
+            self.startAlarmButton.shake(count: 20, for: 2.51, withTranslation: 20)
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ringTimer)), userInfo: nil, repeats: true)
             timerIsRunning = true
         }

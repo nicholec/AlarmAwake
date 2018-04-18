@@ -8,13 +8,15 @@
 
 import UIKit
 import AVFoundation
+import Pulsator
 
 class EquationRecognizerViewController: UIViewController {
     
     var viewModel: EquationRecognizerViewModel!
+    let pulsator = Pulsator()
     
     @IBOutlet weak var recordingButton: UIButton!
-    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var numberLabel: NumberLabel!
     @IBOutlet weak var equationTextView: UITextView!
     @IBOutlet weak var progressView: UIProgressView!
     
@@ -25,6 +27,12 @@ class EquationRecognizerViewController: UIViewController {
         viewModel.requestAuthorization()
         self.numberLabel.text = String(describing: viewModel.answer.value)
         self.equationTextView.text = ""
+        
+        pulsator.position = self.recordingButton.center
+        pulsator.numPulse = 5
+        pulsator.radius = 100
+        pulsator.backgroundColor = self.numberLabel.shadowColor?.cgColor
+        view.layer.insertSublayer(pulsator, below: self.recordingButton.layer)
         
         viewModel.equation.signal.observeValues { equation in
             self.equationTextView.text = equation
@@ -43,6 +51,10 @@ class EquationRecognizerViewController: UIViewController {
         viewModel.askForEquation()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     @IBAction func longPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
         switch  gestureRecognizer.state {
         case .began:
@@ -50,11 +62,14 @@ class EquationRecognizerViewController: UIViewController {
             viewModel?.startRecording(completion: {
                 DispatchQueue.main.async {
                     self.equationTextView.text = ""
+                    self.pulsator.start()
                 }
             })
         case .ended:
             print("exited")
-            viewModel.stopRecording()
+            viewModel.stopRecording(completion: {
+                self.pulsator.stop()
+            })
             viewModel.processEquation(completion: { correct in
                 if correct {
                     self.viewModel.player?.stop()
@@ -69,6 +84,8 @@ class EquationRecognizerViewController: UIViewController {
                             }
                         }
                     })
+                } else {
+                    self.numberLabel.wrongSolution()
                 }
             })
         default:
