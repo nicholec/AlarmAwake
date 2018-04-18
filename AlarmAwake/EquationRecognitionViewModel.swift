@@ -29,12 +29,16 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     var spokenEquation: String = ""
     var numericalEquation: String = ""
     let synth = AVSpeechSynthesizer()
-    let answer = arc4random_uniform(99)
+    var answer: MutableProperty<UInt32> = MutableProperty(arc4random_uniform(99))
     let equationDifficulty: EquationDifficulty
+    let correctNeeded: Int
+    var numTimesCorrect: MutableProperty<Int> = MutableProperty(0)
+    var numbersSolvedFor: Set<UInt32> = Set()
     
-    init(player: AVAudioPlayer?, difficultySetting: Int) {
+    init(player: AVAudioPlayer?, difficultySetting: Int, numCorrectNeeded: Int) {
         self.player = player
         self.equationDifficulty = EquationDifficulty(rawValue: difficultySetting)!
+        self.correctNeeded = numCorrectNeeded
     }
 }
 
@@ -90,7 +94,7 @@ extension EquationRecognizerViewModel {
     }
     
     public func askForEquation() {
-        let utterance = AVSpeechUtterance(string: "Give me an equation that evaluates to \(String(answer))")
+        let utterance = AVSpeechUtterance(string: "Give me an equation that evaluates to \(String(answer.value))")
         utterance.rate = 0.5
         self.synth.speak(utterance)
     }
@@ -123,6 +127,19 @@ extension EquationRecognizerViewModel {
         }
     }
     
+    private func generateNextNumber() {
+        numbersSolvedFor.insert(self.answer.value)
+        var new_num = arc4random_uniform(99)
+        while new_num == self.answer.value || numbersSolvedFor.contains(new_num) {
+            new_num = arc4random_uniform(99)
+        }
+        self.answer.value = new_num
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+            self.equation.value = ""
+        }
+        askForEquation()
+    }
+    
     public func processEquation(completion: @escaping ((_ correct: Bool) -> Void)) {
         processForFormattedEquation()
         var utterance = AVSpeechUtterance(string: "")
@@ -134,16 +151,27 @@ extension EquationRecognizerViewModel {
             SwiftTryCatch.try({
                 let expr = NSExpression(format: self.processedEquation)
                 if let result = expr.expressionValue(with: [], context: nil) as? Double {
-                    if (self.answer <= 18 && self.equation.value.count - String(self.answer).count < self.minLengthForDifficultySetting()) || self.answer > 18 &&  self.equation.value.count - String(self.answer).count < self.minLengthForDifficultySetting() + 1 {
+                    if (self.answer.value <= 18 && self.equation.value.count - String(self.answer.value).count < self.minLengthForDifficultySetting()) || self.answer.value > 18 &&  self.equation.value.count - String(self.answer.value).count < self.minLengthForDifficultySetting() + 1 {
                         utterance = AVSpeechUtterance(string: "Try a longer equation")
                         self.synth.speak(utterance)
                         completion(false)
                     } else {
                         print(result)
-                        let response = "\(self.spokenEquation) equals \(Int(result)). \(Double(self.answer) == result ? "That's right!" : "Try again.")"
+                        let response = "\(self.spokenEquation) equals \(Int(result)). \(Double(self.answer.value) == result ? "That's right!" : "Try again.")"
                         utterance = AVSpeechUtterance(string: response)
                         self.synth.speak(utterance)
-                        completion(Double(self.answer) == result)
+                        if Double(self.answer.value) == result {
+                            self.numTimesCorrect.value += 1
+                            if self.numTimesCorrect.value == self.correctNeeded {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                    completion(true)
+                                }
+                            } else {
+                                self.generateNextNumber()
+                                completion(false)
+                            }
+                        }
+                        
                     }
                 } else {
                     utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.spokenEquation)")

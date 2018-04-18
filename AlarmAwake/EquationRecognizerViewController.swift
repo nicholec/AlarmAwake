@@ -16,17 +16,24 @@ class EquationRecognizerViewController: UIViewController {
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var equationTextView: UITextView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     //IBOutlet Information
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.requestAuthorization()
-        self.numberLabel.text = String(describing: viewModel.answer)
+        self.numberLabel.text = String(describing: viewModel.answer.value)
         self.equationTextView.text = ""
         
         viewModel.equation.signal.observeValues { equation in
             self.equationTextView.text = equation
+        }
+        viewModel.answer.signal.observeValues { answer in
+            self.numberLabel.text = String(answer)
+        }
+        viewModel.numTimesCorrect.signal.observeValues { num in
+            self.progressView.progress = Float(num)/Float(self.viewModel.correctNeeded)
         }
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
