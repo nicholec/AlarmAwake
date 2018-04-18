@@ -85,12 +85,13 @@ extension EquationRecognizerViewModel {
         }
     }
     
-    public func stopRecording() {
+    public func stopRecording(completion: () -> Void) {
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 1)
         request.endAudio()
         recognitionTask?.cancel()
         request = SFSpeechAudioBufferRecognitionRequest()
+        completion()
     }
     
     public func askForEquation() {
@@ -170,6 +171,8 @@ extension EquationRecognizerViewModel {
                                 self.generateNextNumber()
                                 completion(false)
                             }
+                        } else {
+                            completion(false)
                         }
                         
                     }

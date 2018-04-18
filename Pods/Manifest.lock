@@ -1,15 +1,18 @@
 PODS:
+  - Pulsator (0.4.1)
   - ReactiveSwift (3.1.0):
     - Result (~> 3.2)
   - Result (3.2.4)
   - SwiftTryCatch (1.0.0)
 
 DEPENDENCIES:
+  - Pulsator
   - ReactiveSwift (~> 3.0)
   - SwiftTryCatch (from `https://github.com/ravero/SwiftTryCatch.git`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Pulsator
     - ReactiveSwift
     - Result
 
@@ -23,10 +26,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ravero/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
+  Pulsator: 89a18d0e0ee2f642bb83cb9dfb6b7eebc1dc6241
   ReactiveSwift: 5b26d2e988fe0eed2daf48c4054d1de74db50184
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SwiftTryCatch: fc83ba75e26f7207749b568c50965218d99e1571
 
-PODFILE CHECKSUM: d7ffd898a0697d31d3a9c656c7867c657dff6b57
+PODFILE CHECKSUM: 5021723351325c31f18ead4c521531ade7505fe7
 
 COCOAPODS: 1.5.0

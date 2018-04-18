@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXW-ph-PjV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXW-ph-PjV" customClass="NumberLabel" customModule="AlarmAwake" customModuleProvider="target">
                                 <rect key="frame" x="151" y="150" width="75" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="mcL-6k-3f5"/>
@@ -30,10 +30,10 @@
                                 <size key="shadowOffset" width="4" height="-1"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLs-Be-Hrg">
-                                <rect key="frame" x="163" y="568" width="50" height="50"/>
+                                <rect key="frame" x="158" y="537" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="b5j-7g-0ra"/>
-                                    <constraint firstAttribute="width" constant="50" id="pUl-7r-FzX"/>
+                                    <constraint firstAttribute="height" constant="60" id="b5j-7g-0ra"/>
+                                    <constraint firstAttribute="width" constant="60" id="pUl-7r-FzX"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="0.034920876080000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button" image="RecordButton">
@@ -52,9 +52,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="{Equation}" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVt-N2-0o3">
-                                <rect key="frame" x="60" y="359" width="255" height="133"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="{Equation}" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVt-N2-0o3">
+                                <rect key="frame" x="60" y="359" width="255" height="102"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="255" id="3lF-gL-qx8"/>
                                 </constraints>
@@ -84,7 +83,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GLs-Be-Hrg" secondAttribute="bottom" constant="49" id="3Lu-Tm-AgH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GLs-Be-Hrg" secondAttribute="bottom" constant="70" id="3Lu-Tm-AgH"/>
                             <constraint firstItem="k4b-MZ-P3f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Qo-iJ-YQn"/>
                             <constraint firstItem="jXW-ph-PjV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="46U-bX-Yaq"/>
                             <constraint firstItem="C9K-CV-EgG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AP8-GI-QF1"/>
@@ -172,6 +171,7 @@
                     <connections>
                         <outlet property="difficultySegControl" destination="3ZP-Uj-IfT" id="hAS-AV-Pc1"/>
                         <outlet property="numberTextField" destination="vZQ-dO-Y7I" id="lyP-Kk-Vvd"/>
+                        <outlet property="startAlarmButton" destination="fd5-E5-f1I" id="UsB-If-JpN"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="startEquationRecognizer" id="qQh-6f-uNy"/>
                     </connections>
                 </viewController>
