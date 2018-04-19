@@ -109,11 +109,14 @@ extension EquationRecognizerViewModel {
     }
     
     private func processForFormattedEquation() {
-        self.equation.value = self.equation.value.replace(target: " one", withString: "1").replace(target: " minus", withString: "-")
+        self.equation.value = self.equation.value.replace(target: " one", withString: "1").replace(target: " minus", withString: "-").replace(target: "One", withString: "1")
         self.processedEquation = equation.value.replace(target: "×", withString: "*")
-        self.spokenEquation = self.processedEquation.replace(target: "-", withString: " minus ")
-        self.spokenEquation = self.processedEquation.replace(target: "*", withString: " times ")
         self.processedEquation = self.processedEquation.replace(target: "÷", withString: "/")
+        
+        self.spokenEquation = self.processedEquation.replace(target: "-", withString: " minus ")
+        self.spokenEquation = self.spokenEquation.replace(target: "*", withString: " times ")
+        self.spokenEquation = self.spokenEquation.replace(target: "/", withString: " divided by ")
+        
         print(self.processedEquation)
     }
     
@@ -141,6 +144,16 @@ extension EquationRecognizerViewModel {
         askForEquation()
     }
     
+    private func numberOfOperators() -> Int {
+        let operatorsOnlyRegex = "[^-+/*]"
+        let removeOnlyOnesRegex = "[-+/*][0-1](?=([0-9|.])|$)"
+        
+        let removingOnesEquation = self.processedEquation.removingRegexMatches(pattern: removeOnlyOnesRegex)
+        let operatorsOnlyEquation = removingOnesEquation?.removingRegexMatches(pattern: operatorsOnlyRegex)
+        
+        return operatorsOnlyEquation?.count ?? 0
+    }
+    
     public func processEquation(completion: @escaping ((_ correct: Bool) -> Void)) {
         processForFormattedEquation()
         var utterance = AVSpeechUtterance(string: "")
@@ -152,7 +165,8 @@ extension EquationRecognizerViewModel {
             SwiftTryCatch.try({
                 let expr = NSExpression(format: self.processedEquation)
                 if let result = expr.expressionValue(with: [], context: nil) as? Double {
-                    if (self.answer.value <= 18 && self.equation.value.count - String(self.answer.value).count < self.minLengthForDifficultySetting()) || self.answer.value > 18 &&  self.equation.value.count - String(self.answer.value).count < self.minLengthForDifficultySetting() + 1 {
+                    let operatorsCount = self.numberOfOperators()
+                    if (operatorsCount < self.minLengthForDifficultySetting()) {
                         utterance = AVSpeechUtterance(string: "Try a longer equation")
                         self.synth.speak(utterance)
                         completion(false)
@@ -188,6 +202,18 @@ extension EquationRecognizerViewModel {
             }, finallyBlock: {
                 // close resources
             })
+        }
+    }
+}
+
+extension String {
+    func removingRegexMatches(pattern: String, replaceWith: String = "") -> String? {
+        do {
+            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
+            let range = NSMakeRange(0, self.count)
+            return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replaceWith)
+        } catch {
+            return nil
         }
     }
 }
