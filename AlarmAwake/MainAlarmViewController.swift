@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AudioToolbox
 import AVFoundation
+import PopupDialog
 
 class MainAlarmViewController: UIViewController {
     
@@ -33,6 +34,14 @@ class MainAlarmViewController: UIViewController {
                 viewController.viewModel = viewModel
             }
         }
+    }
+    
+    @IBAction func showHelpDialog() {
+        let helpVC = ViewController(nibName: "HelpDialog", bundle: nil)
+        let popup = PopupDialog(viewController: helpVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
+        //let helpButton = DefaultButton(title: "CLOSE", height: 60, dismissOnTap: true, action: nil)
+        //popup.addButton(helpButton)
+        present(popup, animated: true, completion: nil)
     }
     
     @IBAction func startTimer() {

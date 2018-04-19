@@ -1,4 +1,7 @@
 PODS:
+  - DynamicBlurView (2.0.2)
+  - PopupDialog (0.7.1):
+    - DynamicBlurView (~> 2.0)
   - Pulsator (0.4.1)
   - ReactiveSwift (3.1.0):
     - Result (~> 3.2)
@@ -6,12 +9,15 @@ PODS:
   - SwiftTryCatch (1.0.0)
 
 DEPENDENCIES:
+  - PopupDialog (~> 0.7)
   - Pulsator
   - ReactiveSwift (~> 3.0)
   - SwiftTryCatch (from `https://github.com/ravero/SwiftTryCatch.git`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - DynamicBlurView
+    - PopupDialog
     - Pulsator
     - ReactiveSwift
     - Result
@@ -26,11 +32,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ravero/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
+  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
+  PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
   Pulsator: 89a18d0e0ee2f642bb83cb9dfb6b7eebc1dc6241
   ReactiveSwift: 5b26d2e988fe0eed2daf48c4054d1de74db50184
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SwiftTryCatch: fc83ba75e26f7207749b568c50965218d99e1571
 
-PODFILE CHECKSUM: 5021723351325c31f18ead4c521531ade7505fe7
+PODFILE CHECKSUM: d3b45eeb68bcc53054f5ef63c7d8eed46c154349
 
 COCOAPODS: 1.5.0
