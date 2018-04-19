@@ -21,6 +21,7 @@
 		702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702ACCED2078865200562422 /* MainAlarmViewController.swift */; };
 		702ACCF0207B1F1100562422 /* Citrine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 702ACCEF207B1F1100562422 /* Citrine.mp3 */; };
 		702ACCF2207B259400562422 /* EquationRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */; };
+		705E37DD20882B6C00353A9D /* HelpDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 705E37DC20882B6C00353A9D /* HelpDialog.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		702ACCED2078865200562422 /* MainAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAlarmViewController.swift; sourceTree = "<group>"; };
 		702ACCEF207B1F1100562422 /* Citrine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Citrine.mp3; sourceTree = "<group>"; };
 		702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognitionViewModel.swift; sourceTree = "<group>"; };
+		705E37DC20882B6C00353A9D /* HelpDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpDialog.xib; sourceTree = "<group>"; };
 		CC8F7471B4E515081309C68E /* Pods-AlarmAwake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 				702ACCEF207B1F1100562422 /* Citrine.mp3 */,
 				04DE01E12076EC14001049F4 /* Info.plist */,
 				04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */,
+				705E37DC20882B6C00353A9D /* HelpDialog.xib */,
 				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
 				702ACCED2078865200562422 /* MainAlarmViewController.swift */,
 				702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */,
@@ -280,6 +283,7 @@
 				04DE01DD2076EC14001049F4 /* Assets.xcassets in Resources */,
 				04DE01D82076EC14001049F4 /* Main.storyboard in Resources */,
 				702ACCF0207B1F1100562422 /* Citrine.mp3 in Resources */,
+				705E37DD20882B6C00353A9D /* HelpDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +329,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulsator/Pulsator.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -332,6 +338,8 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulsator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
