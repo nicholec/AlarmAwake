@@ -80,6 +80,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cc-BY-N4r">
+                                <rect key="frame" x="273" y="272" width="20.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -87,8 +93,10 @@
                             <constraint firstItem="k4b-MZ-P3f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Qo-iJ-YQn"/>
                             <constraint firstItem="jXW-ph-PjV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="46U-bX-Yaq"/>
                             <constraint firstItem="C9K-CV-EgG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AP8-GI-QF1"/>
+                            <constraint firstItem="2cc-BY-N4r" firstAttribute="leading" secondItem="k4b-MZ-P3f" secondAttribute="trailing" constant="11" id="GnD-ab-Kaq"/>
                             <constraint firstItem="k4b-MZ-P3f" firstAttribute="top" secondItem="jXW-ph-PjV" secondAttribute="bottom" constant="20" id="LKG-cm-4Fn"/>
                             <constraint firstItem="CVt-N2-0o3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NqP-G2-zdt"/>
+                            <constraint firstItem="2cc-BY-N4r" firstAttribute="centerY" secondItem="k4b-MZ-P3f" secondAttribute="centerY" id="RnS-I8-NYd"/>
                             <constraint firstItem="CVt-N2-0o3" firstAttribute="top" secondItem="RK4-5b-fsI" secondAttribute="bottom" constant="2" id="aJK-0Y-rbk"/>
                             <constraint firstItem="GLs-Be-Hrg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bs7-9y-9JD"/>
                             <constraint firstItem="C9K-CV-EgG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="eXC-kQ-gsN"/>
@@ -103,6 +111,7 @@
                     <connections>
                         <outlet property="equationTextView" destination="CVt-N2-0o3" id="IrL-mg-Pwx"/>
                         <outlet property="numberLabel" destination="jXW-ph-PjV" id="eaO-1B-Xv9"/>
+                        <outlet property="progessLabel" destination="2cc-BY-N4r" id="eGA-98-l1D"/>
                         <outlet property="progressView" destination="k4b-MZ-P3f" id="NZI-ol-rKt"/>
                         <outlet property="recordingButton" destination="GLs-Be-Hrg" id="MeS-cf-l3m"/>
                     </connections>

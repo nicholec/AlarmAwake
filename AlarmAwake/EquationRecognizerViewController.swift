@@ -19,6 +19,7 @@ class EquationRecognizerViewController: UIViewController {
     @IBOutlet weak var numberLabel: NumberLabel!
     @IBOutlet weak var equationTextView: UITextView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var progessLabel: UILabel!
     
     //IBOutlet Information
     
@@ -27,6 +28,7 @@ class EquationRecognizerViewController: UIViewController {
         viewModel.requestAuthorization()
         self.numberLabel.text = String(describing: viewModel.answer.value)
         self.equationTextView.text = ""
+        self.progessLabel.text = "\(self.viewModel.numTimesCorrect.value)/\(self.viewModel.correctNeeded)"
         
         pulsator.position = self.recordingButton.center
         pulsator.numPulse = 5
@@ -42,6 +44,7 @@ class EquationRecognizerViewController: UIViewController {
         }
         viewModel.numTimesCorrect.signal.observeValues { num in
             self.progressView.progress = Float(num)/Float(self.viewModel.correctNeeded)
+            self.progessLabel.text = "\(num)/\(self.viewModel.correctNeeded)"
         }
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
