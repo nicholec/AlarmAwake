@@ -29,7 +29,7 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     var spokenEquation: String = ""
     var numericalEquation: String = ""
     let synth = AVSpeechSynthesizer()
-    var answer: MutableProperty<Int> = MutableProperty(Int.random(lower: 5, upper: 100))
+    var answer: MutableProperty<Int>
     let equationDifficulty: EquationDifficulty
     let correctNeeded: Int
     var numTimesCorrect: MutableProperty<Int> = MutableProperty(0)
@@ -39,6 +39,9 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
         self.player = player
         self.equationDifficulty = EquationDifficulty(rawValue: difficultySetting)!
         self.correctNeeded = numCorrectNeeded
+        let lowerBound = (difficultySetting + 1) * 5
+        let upperBound = (difficultySetting + 1) * 100
+        self.answer = MutableProperty(Int.random(lower: lowerBound, upper: upperBound))
     }
 }
 
@@ -101,7 +104,7 @@ extension EquationRecognizerViewModel {
     }
 }
 
-// Equation Processing
+// Equation Generating + Processing
 extension EquationRecognizerViewModel {
     internal func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
         equation.value = transcription.formattedString
@@ -133,9 +136,9 @@ extension EquationRecognizerViewModel {
     
     private func generateNextNumber() {
         numbersSolvedFor.insert(self.answer.value)
-        var new_num = Int.random(lower: 5, upper: 100)
+        var new_num = Int.random(lower: minLengthForDifficultySetting()*5, upper: minLengthForDifficultySetting()*100)
         while new_num == self.answer.value || numbersSolvedFor.contains(new_num) {
-            new_num = Int.random(lower: 5, upper: 100)
+            new_num = Int.random(lower: minLengthForDifficultySetting()*5, upper: minLengthForDifficultySetting()*100)
         }
         self.answer.value = new_num
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
