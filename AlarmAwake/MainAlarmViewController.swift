@@ -31,7 +31,7 @@ class MainAlarmViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startEquationRecognizer" {
             if let viewController = segue.destination as? EquationRecognizerViewController {
-                let viewModel = EquationRecognizerViewModel(player: player, difficultySetting: difficultySegControl.selectedSegmentIndex, numCorrectNeeded: Int((self.numberTextField.text?.isEmpty)! ? "1" : self.numberTextField.text!)!)
+                let viewModel = EquationRecognizerViewModel(player: player, difficultySetting: difficultySegControl.selectedSegmentIndex, numCorrectNeeded: Int((self.numberTextField.text?.isEmpty)! ? "1" : self.numberTextField.text!)!, hintDelegate: viewController)
                 viewController.viewModel = viewModel
             }
         } else if segue.identifier == "startEmotionGame" {

@@ -18,6 +18,12 @@ enum ModeDifficulty: Int {
     case Hard = 2
 }
 
+protocol HintDelegate {
+    func displaySum(result: Double, correct: Bool)
+    func moreOperators(_ numOperators: Int)
+    func emptyEquation()
+}
+
 class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     var player: AVAudioPlayer?
     let audioEngine = AVAudioEngine()
@@ -34,14 +40,16 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     let correctNeeded: Int
     var numTimesCorrect: MutableProperty<Int> = MutableProperty(0)
     var numbersSolvedFor: Set<Int> = Set()
+    var hintDelegate: HintDelegate
     
-    init(player: AVAudioPlayer?, difficultySetting: Int, numCorrectNeeded: Int) {
+    init(player: AVAudioPlayer?, difficultySetting: Int, numCorrectNeeded: Int, hintDelegate: HintDelegate) {
         self.player = player
         self.equationDifficulty = ModeDifficulty(rawValue: difficultySetting)!
         self.correctNeeded = numCorrectNeeded
         let lowerBound = (difficultySetting + 1) * 5
         let upperBound = (difficultySetting + 1) * 100
         self.answer = MutableProperty(Int.random(lower: lowerBound, upper: upperBound))
+        self.hintDelegate = hintDelegate
     }
 }
 
@@ -173,6 +181,7 @@ extension EquationRecognizerViewModel {
         utterance.rate = 0.5
         if equation.value.isEmpty {
             utterance = AVSpeechUtterance(string: "Make sure you say an equation")
+            self.hintDelegate.emptyEquation()
             self.synth.speak(utterance)
         } else {
             SwiftTryCatch.try({
@@ -183,6 +192,7 @@ extension EquationRecognizerViewModel {
                     if (operatorsCount < self.minLengthForDifficultySetting()) {
                         utterance = allOperatorsCount < self.minLengthForDifficultySetting() ? AVSpeechUtterance(string: "Try a longer equation") : AVSpeechUtterance(string: "Remember, 1's and 0's terms don't count")
                         self.synth.speak(utterance)
+                        allOperatorsCount < self.minLengthForDifficultySetting() ? self.hintDelegate.moreOperators(self.minLengthForDifficultySetting()) : self.hintDelegate.displaySum(result: result, correct: (Double(self.answer.value) == result))
                         completion(false, false)
                     } else {
                         print(result)
@@ -200,6 +210,7 @@ extension EquationRecognizerViewModel {
                                 completion(true, false)
                             }
                         } else {
+                            self.hintDelegate.displaySum(result: result, correct: false)
                             completion(false, false)
                         }
                         
