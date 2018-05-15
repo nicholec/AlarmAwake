@@ -18,10 +18,12 @@ enum ModeDifficulty: Int {
     case Hard = 2
 }
 
-protocol HintDelegate {
+protocol AlertDelegate {
     func displaySum(result: Double, correct: Bool)
+    func usedOnesOrZeros()
     func moreOperators(_ numOperators: Int)
     func emptyEquation()
+    func correct()
 }
 
 class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
@@ -40,16 +42,16 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     let correctNeeded: Int
     var numTimesCorrect: MutableProperty<Int> = MutableProperty(0)
     var numbersSolvedFor: Set<Int> = Set()
-    var hintDelegate: HintDelegate
+    var alertDelegate: AlertDelegate
     
-    init(player: AVAudioPlayer?, difficultySetting: Int, numCorrectNeeded: Int, hintDelegate: HintDelegate) {
+    init(player: AVAudioPlayer?, difficultySetting: Int, numCorrectNeeded: Int, alertDelegate: AlertDelegate) {
         self.player = player
         self.equationDifficulty = ModeDifficulty(rawValue: difficultySetting)!
         self.correctNeeded = numCorrectNeeded
         let lowerBound = (difficultySetting + 1) * 5
         let upperBound = (difficultySetting + 1) * 100
         self.answer = MutableProperty(Int.random(lower: lowerBound, upper: upperBound))
-        self.hintDelegate = hintDelegate
+        self.alertDelegate = alertDelegate
     }
 }
 
@@ -160,7 +162,7 @@ extension EquationRecognizerViewModel {
     private func numberOfOperatorsNoOnes() -> Int {
         let operatorsOnlyRegex = "[^-+/*]"
         let removeOnlyOnesRegex = "[-+/*][0-1](?=([-+/*])|$)"
-        let removeLeadingOnesRegex = "^1([-+/*]|$)"
+        let removeLeadingOnesRegex = "^[0-1]([-+/*]|$)"
         
         let removedLeadingOnesEquation = self.processedEquation.removingRegexMatches(pattern: removeLeadingOnesRegex)
         let removingOnesEquation = removedLeadingOnesEquation?.removingRegexMatches(pattern: removeOnlyOnesRegex)
@@ -181,7 +183,7 @@ extension EquationRecognizerViewModel {
         utterance.rate = 0.5
         if equation.value.isEmpty {
             utterance = AVSpeechUtterance(string: "Make sure you say an equation")
-            self.hintDelegate.emptyEquation()
+            self.alertDelegate.emptyEquation()
             self.synth.speak(utterance)
         } else {
             SwiftTryCatch.try({
@@ -190,9 +192,9 @@ extension EquationRecognizerViewModel {
                     let operatorsCount = self.numberOfOperatorsNoOnes()
                     let allOperatorsCount = self.totalOperators()
                     if (operatorsCount < self.minLengthForDifficultySetting()) {
-                        utterance = allOperatorsCount < self.minLengthForDifficultySetting() ? AVSpeechUtterance(string: "Try a longer equation") : AVSpeechUtterance(string: "Remember, 1's and 0's terms don't count")
+                        utterance = allOperatorsCount < self.minLengthForDifficultySetting() ? AVSpeechUtterance(string: "Try a longer equation") : AVSpeechUtterance(string: "Remember, 1's and 0's terms don't count towads operator count")
                         self.synth.speak(utterance)
-                        allOperatorsCount < self.minLengthForDifficultySetting() ? self.hintDelegate.moreOperators(self.minLengthForDifficultySetting()) : self.hintDelegate.displaySum(result: result, correct: (Double(self.answer.value) == result))
+                        allOperatorsCount < self.minLengthForDifficultySetting() ? self.alertDelegate.moreOperators(self.minLengthForDifficultySetting()) : self.alertDelegate.usedOnesOrZeros()
                         completion(false, false)
                     } else {
                         print(result)
@@ -201,6 +203,7 @@ extension EquationRecognizerViewModel {
                         self.synth.speak(utterance)
                         if Double(self.answer.value) == result {
                             self.numTimesCorrect.value += 1
+                            self.alertDelegate.correct()
                             if self.numTimesCorrect.value == self.correctNeeded {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                                     completion(true, true)
@@ -210,7 +213,7 @@ extension EquationRecognizerViewModel {
                                 completion(true, false)
                             }
                         } else {
-                            self.hintDelegate.displaySum(result: result, correct: false)
+                            self.alertDelegate.displaySum(result: result, correct: false)
                             completion(false, false)
                         }
                         
