@@ -1,0 +1,70 @@
+PODS:
+  - AffdexSDK-iOS (4.0.1):
+    - AWSKinesis
+  - AWSCore (2.6.16)
+  - AWSKinesis (2.6.16):
+    - AWSCore (= 2.6.16)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - DynamicBlurView (2.0.2)
+  - PopupDialog (0.7.1):
+    - DynamicBlurView (~> 2.0)
+  - Pulsator (0.4.1)
+  - ReactiveSwift (3.1.0):
+    - Result (~> 3.2)
+  - Result (3.2.4)
+  - RZViewActions (0.4.0)
+  - SwiftTryCatch (1.0.0)
+
+DEPENDENCIES:
+  - AffdexSDK-iOS
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - PopupDialog (~> 0.7)
+  - Pulsator
+  - ReactiveSwift (~> 3.0)
+  - RZViewActions
+  - SwiftTryCatch (from `https://github.com/ravero/SwiftTryCatch.git`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AffdexSDK-iOS
+    - AWSCore
+    - AWSKinesis
+    - DynamicBlurView
+    - PopupDialog
+    - Pulsator
+    - ReactiveSwift
+    - Result
+    - RZViewActions
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  SwiftTryCatch:
+    :git: https://github.com/ravero/SwiftTryCatch.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  SwiftTryCatch:
+    :commit: 46ca643dc8b9e47482437e906b30952712e8e232
+    :git: https://github.com/ravero/SwiftTryCatch.git
+
+SPEC CHECKSUMS:
+  AffdexSDK-iOS: 46f04df6a0259957190f3a592ccd0b33367b3d66
+  AWSCore: 314df68684e338310409c6a3b050e28932deb6ff
+  AWSKinesis: bff297ea7068f68fe7f948f911e255fb46748b1e
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
+  PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
+  Pulsator: 89a18d0e0ee2f642bb83cb9dfb6b7eebc1dc6241
+  ReactiveSwift: 5b26d2e988fe0eed2daf48c4054d1de74db50184
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RZViewActions: 31c231845e6a7dd8a0c7cd463203e509635cc06b
+  SwiftTryCatch: fc83ba75e26f7207749b568c50965218d99e1571
+
+PODFILE CHECKSUM: ce6e3d0eee61f46aa092e162d3b8e6f7f4b453b9
+
+COCOAPODS: 1.5.0
