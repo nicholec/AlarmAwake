@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Pulsator
+import PopupDialog
 
 class EquationRecognizerViewController: UIViewController {
     
@@ -56,6 +57,7 @@ class EquationRecognizerViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        pulsator.position = self.recordingButton.center
     }
     
     @IBAction func longPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -73,8 +75,8 @@ class EquationRecognizerViewController: UIViewController {
             viewModel.stopRecording(completion: {
                 self.pulsator.stop()
             })
-            viewModel.processEquation(completion: { correct in
-                if correct {
+            viewModel.processEquation(completion: { correct, dismiss in
+                if correct && dismiss {
                     self.viewModel.player?.stop()
                     self.dismiss(animated: true, completion: {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
@@ -87,13 +89,21 @@ class EquationRecognizerViewController: UIViewController {
                             }
                         }
                     })
-                } else {
+                } else if !correct {
                     self.numberLabel.wrongSolution()
                 }
             })
         default:
             break
         }
+    }
+    
+    @IBAction func showHelpDialog() {
+        let helpVC = ViewController(nibName: "EquationHelpDialog", bundle: nil)
+        let popup = PopupDialog(viewController: helpVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
+        //let helpButton = DefaultButton(title: "CLOSE", height: 60, dismissOnTap: true, action: nil)
+        //popup.addButton(helpButton)
+        present(popup, animated: true, completion: nil)
     }
 }
 

@@ -45,5 +45,7 @@
 	<string>This is needed for the Equation Speech Recognition</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This is needed for the Equation Speech Recognition</string>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera is used for emotion recognition</string>
 </dict>
 </plist>

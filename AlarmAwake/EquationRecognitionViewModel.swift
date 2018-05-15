@@ -12,7 +12,7 @@ import Speech
 import SwiftTryCatch
 import ReactiveSwift
 
-enum EquationDifficulty: Int {
+enum ModeDifficulty: Int {
     case Easy = 0
     case Medium = 1
     case Hard = 2
@@ -30,14 +30,14 @@ class EquationRecognizerViewModel: NSObject, SFSpeechRecognitionTaskDelegate {
     var numericalEquation: String = ""
     let synth = AVSpeechSynthesizer()
     var answer: MutableProperty<Int>
-    let equationDifficulty: EquationDifficulty
+    let equationDifficulty: ModeDifficulty
     let correctNeeded: Int
     var numTimesCorrect: MutableProperty<Int> = MutableProperty(0)
     var numbersSolvedFor: Set<Int> = Set()
     
     init(player: AVAudioPlayer?, difficultySetting: Int, numCorrectNeeded: Int) {
         self.player = player
-        self.equationDifficulty = EquationDifficulty(rawValue: difficultySetting)!
+        self.equationDifficulty = ModeDifficulty(rawValue: difficultySetting)!
         self.correctNeeded = numCorrectNeeded
         let lowerBound = (difficultySetting + 1) * 5
         let upperBound = (difficultySetting + 1) * 100
@@ -70,6 +70,8 @@ extension EquationRecognizerViewModel {
             recognitionTask.cancel()
             self.recognitionTask = nil
         }
+        
+        self.equation.value = ""
         
         let node = audioEngine.inputNode
         let recordingFormat = node.outputFormat(forBus: 1)
@@ -147,17 +149,25 @@ extension EquationRecognizerViewModel {
         askForEquation()
     }
     
-    private func numberOfOperators() -> Int {
+    private func numberOfOperatorsNoOnes() -> Int {
         let operatorsOnlyRegex = "[^-+/*]"
         let removeOnlyOnesRegex = "[-+/*][0-1](?=([-+/*])|$)"
+        let removeLeadingOnesRegex = "^1([-+/*]|$)"
         
-        let removingOnesEquation = self.processedEquation.removingRegexMatches(pattern: removeOnlyOnesRegex)
+        let removedLeadingOnesEquation = self.processedEquation.removingRegexMatches(pattern: removeLeadingOnesRegex)
+        let removingOnesEquation = removedLeadingOnesEquation?.removingRegexMatches(pattern: removeOnlyOnesRegex)
         let operatorsOnlyEquation = removingOnesEquation?.removingRegexMatches(pattern: operatorsOnlyRegex)
         
         return operatorsOnlyEquation?.count ?? 0
     }
     
-    public func processEquation(completion: @escaping ((_ correct: Bool) -> Void)) {
+    private func totalOperators() -> Int {
+        let operatorsOnlyRegex = "[^-+/*]"
+        let onlyOperators = self.processedEquation.removingRegexMatches(pattern: operatorsOnlyRegex)
+        return onlyOperators?.count ?? 0
+    }
+    
+    public func processEquation(completion: @escaping ((_ correct: Bool, _ dismiss: Bool) -> Void)) {
         processForFormattedEquation()
         var utterance = AVSpeechUtterance(string: "")
         utterance.rate = 0.5
@@ -168,11 +178,12 @@ extension EquationRecognizerViewModel {
             SwiftTryCatch.try({
                 let expr = NSExpression(format: self.processedEquation)
                 if let result = expr.expressionValue(with: [], context: nil) as? Double {
-                    let operatorsCount = self.numberOfOperators()
+                    let operatorsCount = self.numberOfOperatorsNoOnes()
+                    let allOperatorsCount = self.totalOperators()
                     if (operatorsCount < self.minLengthForDifficultySetting()) {
-                        utterance = AVSpeechUtterance(string: "Try a longer equation")
+                        utterance = allOperatorsCount < self.minLengthForDifficultySetting() ? AVSpeechUtterance(string: "Try a longer equation") : AVSpeechUtterance(string: "Remember, 1's and 0's terms don't count")
                         self.synth.speak(utterance)
-                        completion(false)
+                        completion(false, false)
                     } else {
                         print(result)
                         let response = "\(self.spokenEquation) equals \(Int(result)). \(Double(self.answer.value) == result ? "That's right!" : "Try again.")"
@@ -182,26 +193,26 @@ extension EquationRecognizerViewModel {
                             self.numTimesCorrect.value += 1
                             if self.numTimesCorrect.value == self.correctNeeded {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                                    completion(true)
+                                    completion(true, true)
                                 }
                             } else {
                                 self.generateNextNumber()
-                                completion(false)
+                                completion(true, false)
                             }
                         } else {
-                            completion(false)
+                            completion(false, false)
                         }
                         
                     }
                 } else {
                     utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.spokenEquation)")
                     self.synth.speak(utterance)
-                    completion(false)
+                    completion(false, false)
                 }
             }, catch: { (error) in
                 utterance = AVSpeechUtterance(string: "Unable to process your equation: \(self.spokenEquation)")
                 self.synth.speak(utterance)
-                completion(false)
+                completion(false, false)
             }, finallyBlock: {
                 // close resources
             })
