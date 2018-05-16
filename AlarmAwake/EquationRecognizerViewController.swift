@@ -53,7 +53,7 @@ class EquationRecognizerViewController: UIViewController, AlertDelegate {
         longPressGesture.cancelsTouchesInView = false
         recordingButton.addGestureRecognizer(longPressGesture)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(emptyEquation))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotLongPress))
         recordingButton.addGestureRecognizer(tapGesture)
         
         viewModel.askForEquation()
@@ -109,9 +109,16 @@ class EquationRecognizerViewController: UIViewController, AlertDelegate {
         //popup.addButton(helpButton)
         present(popup, animated: true, completion: nil)
     }
-    
-    @objc func emptyEquation() {
+}
+
+// Alert Dialog Functions
+extension EquationRecognizerViewController {
+    @objc func tapNotLongPress() {
         RKDropdownAlert.title("Speak while longpressing the record button", backgroundColor: UIColor.flatPurpleDark, textColor: UIColor.white, time: 4)
+    }
+    
+    func emptyEquation() {
+        RKDropdownAlert.title("Speak before releasing the record button", backgroundColor: UIColor.flatPurpleDark, textColor: UIColor.white, time: 4)
     }
     
     func displaySum(result: Double, correct: Bool) {

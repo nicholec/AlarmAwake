@@ -192,7 +192,7 @@ extension EquationRecognizerViewModel {
                     let operatorsCount = self.numberOfOperatorsNoOnes()
                     let allOperatorsCount = self.totalOperators()
                     if (operatorsCount < self.minLengthForDifficultySetting()) {
-                        utterance = allOperatorsCount < self.minLengthForDifficultySetting() ? AVSpeechUtterance(string: "Try a longer equation") : AVSpeechUtterance(string: "Remember, 1's and 0's terms don't count towads operator count")
+                        utterance = allOperatorsCount < self.minLengthForDifficultySetting() ? AVSpeechUtterance(string: "Try a longer equation") : AVSpeechUtterance(string: "Remember, 1's and 0's terms don't count towards operator count")
                         self.synth.speak(utterance)
                         allOperatorsCount < self.minLengthForDifficultySetting() ? self.alertDelegate.moreOperators(self.minLengthForDifficultySetting()) : self.alertDelegate.usedOnesOrZeros()
                         completion(false, false)

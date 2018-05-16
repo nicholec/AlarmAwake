@@ -57,62 +57,6 @@ class EmotionViewController: UIViewController, AffdexDisplayDelegate {
         super.viewDidAppear(animated)
     }
     
-    func displayAnimation() {
-        let firstButton = self.getButton(at: 0)
-        let secondButton = self.getButton(at: 1)
-        let thirdButton = self.getButton(at: 2)
-        let fourthButton = self.getButton(at: 3)
-        var fifthButton: UIButton? = nil
-        
-        // address the difficulty setting
-        switch viewModel.difficulty {
-        case .Easy:
-            break
-        case .Medium, .Hard:
-            fifthButton = self.getButton(at: 4)
-        }
-        
-        let duration = 1.5 - 0.5*Double(viewModel.difficulty.rawValue)
-        
-        let wait = RZViewAction.wait(forDuration: duration + 0.5)
-        
-        let firstBtnAction = RZViewAction.init({
-            firstButton.animateBorderColor(color: UIColor.purple, duration: duration)
-        }, withDuration: duration)
-        let secondBtnAction = RZViewAction.init({
-            secondButton.animateBorderColor(color: UIColor.purple, duration: duration)
-        }, withDuration: duration)
-        let thirdBtnAction = RZViewAction.init({
-            thirdButton.animateBorderColor(color: UIColor.purple, duration: duration)
-        }, withDuration: duration)
-        let fourthBtnAction = RZViewAction.init({
-            fourthButton.animateBorderColor(color: UIColor.purple, duration: duration)
-        }, withDuration: duration)
-        
-        var actionList = [firstBtnAction, wait, secondBtnAction, wait, thirdBtnAction, wait, fourthBtnAction, wait]
-        
-        guard let fifthBtn = fifthButton else {
-            let seq = RZViewAction.sequence(actionList)
-            animateSeq(seq: seq)
-            return
-        }
-        
-        let fifthBtnAction = RZViewAction.init({
-            fifthBtn.animateBorderColor(color: UIColor.purple, duration: duration)
-        }, withDuration: duration)
-        actionList.append(contentsOf: [fifthBtnAction, wait])
-        
-        let seq = RZViewAction.sequence(actionList)
-        animateSeq(seq: seq)
-        
-    }
-    
-    private func animateSeq(seq: RZViewActionSequence) {
-        UIView.rz_run(seq, withCompletion: { (finished) in
-            self.viewModel.startDetectingForFaces()
-        })
-    }
-    
     private func getButton(at index: Int) -> UIButton {
         let expr = self.viewModel.exprPattern[index]
         var btnToAnimate = browFurrow
@@ -239,6 +183,15 @@ class EmotionViewController: UIViewController, AffdexDisplayDelegate {
             if correct {
                 self.viewModel.stopDetectingFaces()
                 self.viewModel.generateNextPattern()
+            } else if viewModel.fullPatternAttempts == viewModel.replayAfter {
+                self.replayDialog()
+            }
+            
+            if done {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.00) {
+                    self.dismiss(animated: true)
+                }
+            } else if correct {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     UIView.animate(withDuration: 1.0, delay: 0, options: [], animations: {
                         self.startButton.isHidden = false
@@ -249,12 +202,6 @@ class EmotionViewController: UIViewController, AffdexDisplayDelegate {
                     })
                 }
                 print("SOLVE: \(self.viewModel.exprPattern)")
-            }
-            
-            if done {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
-                    self.dismiss(animated: true)
-                }
             }
         }
     }
@@ -287,6 +234,102 @@ class EmotionViewController: UIViewController, AffdexDisplayDelegate {
         present(popup, animated: true, completion: nil)
     }
     
+    func replayDialog() {
+        let title = "Would you like to replay the pattern?"
+        let message = "You seem to be having a tough time remembering the pattern.  We can replay the pattern to give you a refresher."
+        
+        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal)
+        
+        // Create buttons
+        let cancelBtn = CancelButton(title: "No") {
+            /**
+             * Even if the user didn't replay the pattern, we still reset
+             * such that they have the option to replay later on
+             **/
+            self.viewModel.replayedPattern()
+        }
+        
+        // This button will not the dismiss the dialog
+        let replayBtn = DefaultButton(title: "Yes") {
+            self.viewModel.stopDetectingFaces()
+            self.cameraView.image = nil
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                UIView.animate(withDuration: 1.0, delay: 0, options: [], animations: {
+                    self.startButton.isHidden = false
+                    self.startButton.alpha = 1.0
+                }, completion: { _ in
+                    self.cameraView.image = nil
+                    self.onFaceDetected(found: false)
+                    self.viewModel.replayedPattern()
+                })
+            }
+        }
+
+        popup.addButtons([replayBtn, cancelBtn])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+            self.present(popup, animated: true, completion: nil)
+        }
+    }
+}
+
+// Animations
+extension EmotionViewController {
+    func displayAnimation() {
+        let firstButton = self.getButton(at: 0)
+        let secondButton = self.getButton(at: 1)
+        let thirdButton = self.getButton(at: 2)
+        let fourthButton = self.getButton(at: 3)
+        var fifthButton: UIButton? = nil
+        
+        // address the difficulty setting
+        switch viewModel.difficulty {
+        case .Easy:
+            break
+        case .Medium, .Hard:
+            fifthButton = self.getButton(at: 4)
+        }
+        
+        let duration = 1.5 - 0.5*Double(viewModel.difficulty.rawValue)
+        
+        let wait = RZViewAction.wait(forDuration: duration + 0.5)
+        
+        let firstBtnAction = RZViewAction.init({
+            firstButton.animateBorderColor(color: UIColor.purple, duration: duration)
+        }, withDuration: duration)
+        let secondBtnAction = RZViewAction.init({
+            secondButton.animateBorderColor(color: UIColor.purple, duration: duration)
+        }, withDuration: duration)
+        let thirdBtnAction = RZViewAction.init({
+            thirdButton.animateBorderColor(color: UIColor.purple, duration: duration)
+        }, withDuration: duration)
+        let fourthBtnAction = RZViewAction.init({
+            fourthButton.animateBorderColor(color: UIColor.purple, duration: duration)
+        }, withDuration: duration)
+        
+        var actionList = [firstBtnAction, wait, secondBtnAction, wait, thirdBtnAction, wait, fourthBtnAction, wait]
+        
+        guard let fifthBtn = fifthButton else {
+            let seq = RZViewAction.sequence(actionList)
+            animateSeq(seq: seq)
+            return
+        }
+        
+        let fifthBtnAction = RZViewAction.init({
+            fifthBtn.animateBorderColor(color: UIColor.purple, duration: duration)
+        }, withDuration: duration)
+        actionList.append(contentsOf: [fifthBtnAction, wait])
+        
+        let seq = RZViewAction.sequence(actionList)
+        animateSeq(seq: seq)
+        
+    }
+    
+    private func animateSeq(seq: RZViewActionSequence) {
+        UIView.rz_run(seq, withCompletion: { (finished) in
+            self.viewModel.startDetectingForFaces()
+        })
+    }
 }
 
 extension UIView {

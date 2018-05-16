@@ -19,6 +19,23 @@ public enum EmoExpr: Int {
     case Kiss = 4
     case BrowFurrow = 5
     case JawDrop = 6
+    
+    func str() -> String {
+        switch self {
+        case .BrowRaise:
+            return "Brow Raise"
+        case .LipSuck:
+            return "Lip Suck"
+        case .Smile:
+            return "Smile"
+        case .Kiss:
+            return "Pucker"
+        case .BrowFurrow:
+            return "Brow Furrow"
+        case .JawDrop:
+            return "JawDrop"
+        }
+    }
 }
 
 struct EmoExprScore {
@@ -39,7 +56,10 @@ class EmotionViewModel: AFDXDetectorDelegate {
     private var affdexDisplayDelegate: AffdexDisplayDelegate
     
     var exprPattern: [EmoExpr] = [EmoExpr]()
+    var lastPatternAttempt: [EmoExpr] = [EmoExpr]()
     var currAttempt: Int = 0
+    var fullPatternAttempts: Int = 0
+    var replayAfter = Int.random(lower: 3, upper: 6)
     private var usersSelectedPattern: [EmoExpr] = [EmoExpr]()
     let difficulty: ModeDifficulty //update this to not be optional
     let patternLength: Int
@@ -93,16 +113,14 @@ class EmotionViewModel: AFDXDetectorDelegate {
         let correct = usersSelectedPattern == exprPattern
         
         if fullPattern {
+            fullPatternAttempts += 1
             print("SOLVED? \(correct)")
+            lastPatternAttempt = usersSelectedPattern
             currAttempt = 0
             usersSelectedPattern = [EmoExpr]()
             if correct {
                 self.numTimesCorrect.value += 1
-                
-//                self.player?.stop()
-                // add the logic for done
-                // if done --> then we dismiss everything
-                // if not done, then we request a new pattern sequence + show start button
+                fullPatternAttempts = 0
             }
         }
         
@@ -115,12 +133,18 @@ class EmotionViewModel: AFDXDetectorDelegate {
         completion(fullPattern, correct, done)
     }
     
+    func replayedPattern() {
+        fullPatternAttempts = 0
+        replayAfter = Int.random(lower: 3, upper: 6)
+    }
+    
     func CPUResponse(_ correct: Bool) {
         let utterance = AVSpeechUtterance(string: correct ? "That's right!!" : "Wrong pattern.")
         synth.speak(utterance)
     }
 }
 
+// Affdex Detection Methods
 extension EmotionViewModel {
     func detector(_ detector: AFDXDetector!, didStartDetecting face: AFDXFace!) {
         // handle a new face
