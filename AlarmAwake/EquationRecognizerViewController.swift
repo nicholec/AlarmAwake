@@ -10,9 +10,10 @@ import UIKit
 import AVFoundation
 import Pulsator
 import PopupDialog
+import RKDropdownAlert
+import ChameleonFramework
 
-class EquationRecognizerViewController: UIViewController {
-    
+class EquationRecognizerViewController: UIViewController, AlertDelegate {
     var viewModel: EquationRecognizerViewModel!
     let pulsator = Pulsator()
     
@@ -51,6 +52,9 @@ class EquationRecognizerViewController: UIViewController {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         longPressGesture.cancelsTouchesInView = false
         recordingButton.addGestureRecognizer(longPressGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapNotLongPress))
+        recordingButton.addGestureRecognizer(tapGesture)
         
         viewModel.askForEquation()
     }
@@ -104,6 +108,33 @@ class EquationRecognizerViewController: UIViewController {
         //let helpButton = DefaultButton(title: "CLOSE", height: 60, dismissOnTap: true, action: nil)
         //popup.addButton(helpButton)
         present(popup, animated: true, completion: nil)
+    }
+}
+
+// Alert Dialog Functions
+extension EquationRecognizerViewController {
+    @objc func tapNotLongPress() {
+        RKDropdownAlert.title("Speak while longpressing the record button", backgroundColor: UIColor.flatPurpleDark, textColor: UIColor.white, time: 4)
+    }
+    
+    func emptyEquation() {
+        RKDropdownAlert.title("Speak before releasing the record button", backgroundColor: UIColor.flatPurpleDark, textColor: UIColor.white, time: 4)
+    }
+    
+    func displaySum(result: Double, correct: Bool) {
+        RKDropdownAlert.title("Current Sum: \(Int(result))", backgroundColor: correct ? UIColor.flatGreenDark : UIColor.flatRedDark, textColor: UIColor.white, time: 2)
+    }
+    
+    func usedOnesOrZeros() {
+        RKDropdownAlert.title("Not enough operators. Used 1 or 0 term(s).", backgroundColor: UIColor.flatOrangeDark, textColor: UIColor.white, time: 4)
+    }
+    
+    func moreOperators(_ numOperators: Int) {
+        RKDropdownAlert.title("You need at least \(numOperators) operator\(numOperators > 1 ? "s" : "")", backgroundColor: UIColor.flatPurpleDark, textColor: UIColor.white, time: 3)
+    }
+    
+    func correct() {
+        RKDropdownAlert.title("That's right!", backgroundColor: UIColor.flatGreenDark, textColor: UIColor.white, time: 2)
     }
 }
 

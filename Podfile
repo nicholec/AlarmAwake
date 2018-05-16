@@ -4,6 +4,7 @@ target 'AlarmAwake' do
 	pod 'ReactiveSwift', '~> 3.0'
 	pod 'SwiftTryCatch', :git => 'https://github.com/ravero/SwiftTryCatch.git'
 	pod 'Pulsator'
+	pod 'RKDropdownAlert'
 	pod 'PopupDialog', '~> 0.7'
 	pod 'AffdexSDK-iOS'
 	pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
