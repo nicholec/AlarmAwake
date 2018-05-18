@@ -135,7 +135,7 @@ class EmotionViewModel: AFDXDetectorDelegate {
     
     func replayedPattern() {
         fullPatternAttempts = 0
-        replayAfter = Int.random(lower: 3, upper: 6)
+        replayAfter = Int.random(lower: 3, upper: 5)
     }
     
     func CPUResponse(_ correct: Bool) {
