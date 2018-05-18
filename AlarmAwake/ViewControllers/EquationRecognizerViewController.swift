@@ -103,7 +103,7 @@ class EquationRecognizerViewController: UIViewController, AlertDelegate {
     }
     
     @IBAction func showHelpDialog() {
-        let helpVC = ViewController(nibName: "EquationHelpDialog", bundle: nil)
+        let helpVC = UIViewController(nibName: "EquationHelpDialog", bundle: nil)
         let popup = PopupDialog(viewController: helpVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
         //let helpButton = DefaultButton(title: "CLOSE", height: 60, dismissOnTap: true, action: nil)
         //popup.addButton(helpButton)
@@ -135,16 +135,6 @@ extension EquationRecognizerViewController {
     
     func correct() {
         RKDropdownAlert.title("That's right!", backgroundColor: UIColor.flatGreenDark, textColor: UIColor.white, time: 2)
-    }
-}
-
-extension String {
-    func matches(_ regex: String) -> Bool {
-        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
-    }
-    
-    func replace(target: String, withString: String) -> String {
-        return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
     }
 }
 

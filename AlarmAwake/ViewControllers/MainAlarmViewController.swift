@@ -45,16 +45,16 @@ class MainAlarmViewController: UIViewController {
     @IBAction func showHelpDialog() {
         switch self.modalitySegControl.selectedSegmentIndex {
         case 0:
-            let helpVC = ViewController(nibName: "EquationHelpDialog", bundle: nil)
+            let helpVC = UIViewController(nibName: "EquationHelpDialog", bundle: nil)
             let popup = PopupDialog(viewController: helpVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
             //let helpButton = DefaultButton(title: "CLOSE", height: 60, dismissOnTap: true, action: nil)
             //popup.addButton(helpButton)
             present(popup, animated: true, completion: nil)
         case 1:
-            let helpVC = ViewController(nibName: "EmotionHelpDialog", bundle: nil)
+            let helpVC = UIViewController(nibName: "EmotionHelpDialog", bundle: nil)
             let popup = PopupDialog(viewController: helpVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
             let helpButton = DefaultButton(title: "EXPRESSION EXAMPLES", height: 60, dismissOnTap: true, action: {
-                let expressionVC = ViewController(nibName: "ExpressionHelpDialog", bundle: nil)
+                let expressionVC = UIViewController(nibName: "ExpressionHelpDialog", bundle: nil)
                 let popup2 = PopupDialog(viewController: expressionVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
                 self.present(popup2, animated: true, completion: nil)
             })

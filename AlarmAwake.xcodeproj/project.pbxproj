@@ -17,6 +17,7 @@
 		04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */; };
 		467021021144B35DA73A39FD /* Pods_AlarmAwake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */; };
 		70064E342087E15000F77FA1 /* NumberLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70064E332087E15000F77FA1 /* NumberLabel.swift */; };
+		70271FE520AE802D00600CAD /* String+Matches+Replace+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70271FE420AE802D00600CAD /* String+Matches+Replace+Regex.swift */; };
 		702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702ACCED2078865200562422 /* MainAlarmViewController.swift */; };
 		702ACCF0207B1F1100562422 /* Citrine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 702ACCEF207B1F1100562422 /* Citrine.mp3 */; };
 		702ACCF2207B259400562422 /* EquationRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */; };
@@ -64,6 +65,7 @@
 		04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognizerViewController.swift; sourceTree = "<group>"; };
 		351AAFD828762FDEA85C1335 /* Pods-AlarmAwake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmAwake.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmAwake/Pods-AlarmAwake.release.xcconfig"; sourceTree = "<group>"; };
 		70064E332087E15000F77FA1 /* NumberLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberLabel.swift; sourceTree = "<group>"; };
+		70271FE420AE802D00600CAD /* String+Matches+Replace+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Matches+Replace+Regex.swift"; sourceTree = "<group>"; };
 		702ACCED2078865200562422 /* MainAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAlarmViewController.swift; sourceTree = "<group>"; };
 		702ACCEF207B1F1100562422 /* Citrine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Citrine.mp3; sourceTree = "<group>"; };
 		702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationRecognitionViewModel.swift; sourceTree = "<group>"; };
@@ -128,11 +130,11 @@
 		04DE01D12076EC14001049F4 /* AlarmAwake */ = {
 			isa = PBXGroup;
 			children = (
+				70271FE020AE79FE00600CAD /* ViewControllers */,
+				70271FDF20AE79DF00600CAD /* ViewModels */,
 				70271FE320AE7A5D00600CAD /* Extensions */,
 				70271FE220AE7A4700600CAD /* Views */,
 				70271FE120AE7A1A00600CAD /* Nibs */,
-				70271FE020AE79FE00600CAD /* ViewControllers */,
-				70271FDF20AE79DF00600CAD /* ViewModels */,
 				04DE01D22076EC14001049F4 /* AppDelegate.swift */,
 				04DE01D62076EC14001049F4 /* Main.storyboard */,
 				04DE01DC2076EC14001049F4 /* Assets.xcassets */,
@@ -175,9 +177,9 @@
 		70271FE020AE79FE00600CAD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
 				702ACCED2078865200562422 /* MainAlarmViewController.swift */,
 				705E37DE208968B800353A9D /* EmotionViewController.swift */,
+				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				707949C5208EC94700C026FC /* UIView+Designables.swift */,
+				70271FE420AE802D00600CAD /* String+Matches+Replace+Regex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				04DE01DB2076EC14001049F4 /* AlarmAwake.xcdatamodeld in Sources */,
 				70064E342087E15000F77FA1 /* NumberLabel.swift in Sources */,
 				707949C6208EC94700C026FC /* UIView+Designables.swift in Sources */,
+				70271FE520AE802D00600CAD /* String+Matches+Replace+Regex.swift in Sources */,
 				702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */,
 				707949CA208ED70C00C026FC /* SwiftNotice.swift in Sources */,
 				04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */,

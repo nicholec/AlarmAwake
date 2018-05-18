@@ -234,18 +234,6 @@ extension EquationRecognizerViewModel {
     }
 }
 
-extension String {
-    func removingRegexMatches(pattern: String, replaceWith: String = "") -> String? {
-        do {
-            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
-            let range = NSMakeRange(0, self.count)
-            return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replaceWith)
-        } catch {
-            return nil
-        }
-    }
-}
-
 public extension Int {
     public static func random(lower: Int , upper: Int) -> Int {
         return lower + Int(arc4random_uniform(UInt32(1 + upper - lower)))

@@ -222,10 +222,10 @@ class EmotionViewController: UIViewController, AffdexDisplayDelegate {
     }
     
     @IBAction func showHelpDialog() {
-        let helpVC = ViewController(nibName: "EmotionHelpDialog", bundle: nil)
+        let helpVC = UIViewController(nibName: "EmotionHelpDialog", bundle: nil)
         let popup = PopupDialog(viewController: helpVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
         let helpButton = DefaultButton(title: "EXPRESSION EXAMPLES", height: 60, dismissOnTap: true, action: {
-                let expressionVC = ViewController(nibName: "ExpressionHelpDialog", bundle: nil)
+                let expressionVC = UIViewController(nibName: "ExpressionHelpDialog", bundle: nil)
                 let popup2 = PopupDialog(viewController: expressionVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
                 self.present(popup2, animated: true, completion: nil)
         })
@@ -328,19 +328,6 @@ extension EmotionViewController {
     private func animateSeq(seq: RZViewActionSequence) {
         UIView.rz_run(seq, withCompletion: { (finished) in
             self.viewModel.startDetectingForFaces()
-        })
-    }
-}
-
-extension UIView {
-    func animateBorderColor(color: UIColor, duration: Double) {
-        let prevBorderColor = self.layer.borderColor
-        UIView.animate(withDuration: duration, delay: 0.0, options:[.repeat, .autoreverse], animations: {
-            self.layer.borderColor = color.cgColor
-        }, completion: { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                self.layer.borderColor = prevBorderColor
-            }
         })
     }
 }
