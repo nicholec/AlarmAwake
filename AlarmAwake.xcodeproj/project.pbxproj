@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		04DE01D32076EC14001049F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01D22076EC14001049F4 /* AppDelegate.swift */; };
-		04DE01D52076EC14001049F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01D42076EC14001049F4 /* ViewController.swift */; };
 		04DE01D82076EC14001049F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DE01D62076EC14001049F4 /* Main.storyboard */; };
 		04DE01DB2076EC14001049F4 /* AlarmAwake.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */; };
 		04DE01DD2076EC14001049F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DE01DC2076EC14001049F4 /* Assets.xcassets */; };
@@ -51,7 +50,6 @@
 		009B2AEC9B540B580A5F0C49 /* Pods_AlarmAwake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmAwake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DE01CF2076EC14001049F4 /* AlarmAwake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmAwake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DE01D22076EC14001049F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04DE01D42076EC14001049F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04DE01D72076EC14001049F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04DE01DA2076EC14001049F4 /* AlarmAwake.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmAwake.xcdatamodel; sourceTree = "<group>"; };
 		04DE01DC2076EC14001049F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,24 +128,18 @@
 		04DE01D12076EC14001049F4 /* AlarmAwake */ = {
 			isa = PBXGroup;
 			children = (
+				70271FE320AE7A5D00600CAD /* Extensions */,
+				70271FE220AE7A4700600CAD /* Views */,
+				70271FE120AE7A1A00600CAD /* Nibs */,
+				70271FE020AE79FE00600CAD /* ViewControllers */,
+				70271FDF20AE79DF00600CAD /* ViewModels */,
 				04DE01D22076EC14001049F4 /* AppDelegate.swift */,
-				04DE01D42076EC14001049F4 /* ViewController.swift */,
 				04DE01D62076EC14001049F4 /* Main.storyboard */,
 				04DE01DC2076EC14001049F4 /* Assets.xcassets */,
 				04DE01DE2076EC14001049F4 /* LaunchScreen.storyboard */,
 				702ACCEF207B1F1100562422 /* Citrine.mp3 */,
 				04DE01E12076EC14001049F4 /* Info.plist */,
 				04DE01D92076EC14001049F4 /* AlarmAwake.xcdatamodeld */,
-				705E37DC20882B6C00353A9D /* EquationHelpDialog.xib */,
-				707949C1208EBFE000C026FC /* EmotionHelpDialog.xib */,
-				707949CB20AA7AE700C026FC /* ExpressionHelpDialog.xib */,
-				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
-				702ACCED2078865200562422 /* MainAlarmViewController.swift */,
-				702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */,
-				70064E332087E15000F77FA1 /* NumberLabel.swift */,
-				705E37DE208968B800353A9D /* EmotionViewController.swift */,
-				707949C3208EC12B00C026FC /* EmotionViewModel.swift */,
-				707949C5208EC94700C026FC /* UIView+Designables.swift */,
 				707949C9208ED70C00C026FC /* SwiftNotice.swift */,
 			);
 			path = AlarmAwake;
@@ -169,6 +161,51 @@
 				04DE01F72076EC14001049F4 /* Info.plist */,
 			);
 			path = AlarmAwakeUITests;
+			sourceTree = "<group>";
+		};
+		70271FDF20AE79DF00600CAD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				707949C3208EC12B00C026FC /* EmotionViewModel.swift */,
+				702ACCF1207B259400562422 /* EquationRecognitionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		70271FE020AE79FE00600CAD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				04DE02032076EEA2001049F4 /* EquationRecognizerViewController.swift */,
+				702ACCED2078865200562422 /* MainAlarmViewController.swift */,
+				705E37DE208968B800353A9D /* EmotionViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		70271FE120AE7A1A00600CAD /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				705E37DC20882B6C00353A9D /* EquationHelpDialog.xib */,
+				707949C1208EBFE000C026FC /* EmotionHelpDialog.xib */,
+				707949CB20AA7AE700C026FC /* ExpressionHelpDialog.xib */,
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
+		70271FE220AE7A4700600CAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				70064E332087E15000F77FA1 /* NumberLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		70271FE320AE7A5D00600CAD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				707949C5208EC94700C026FC /* UIView+Designables.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		BA5CAAEC35F02298EF307FC1 /* Frameworks */ = {
@@ -396,7 +433,6 @@
 				707949C6208EC94700C026FC /* UIView+Designables.swift in Sources */,
 				702ACCEE2078865200562422 /* MainAlarmViewController.swift in Sources */,
 				707949CA208ED70C00C026FC /* SwiftNotice.swift in Sources */,
-				04DE01D52076EC14001049F4 /* ViewController.swift in Sources */,
 				04DE02042076EEA2001049F4 /* EquationRecognizerViewController.swift in Sources */,
 				702ACCF2207B259400562422 /* EquationRecognitionViewModel.swift in Sources */,
 				04DE01D32076EC14001049F4 /* AppDelegate.swift in Sources */,
